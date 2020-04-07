@@ -58,14 +58,14 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Text>
-      <Text layoutX="71.0" layoutY="321.0" strokeType="OUTSIDE" strokeWidth="0.0" text="compiler options" />
-      <Text layoutX="71.0" layoutY="345.0" strokeType="OUTSIDE" strokeWidth="0.0" text="linking options" />
-      <Text layoutX="71.0" layoutY="369.0" strokeType="OUTSIDE" strokeWidth="0.0" text="execute options" />
-      <Text layoutX="68.0" layoutY="394.0" strokeType="OUTSIDE" strokeWidth="0.0" text="debugging options" />
+      <Text layoutX="72.0" layoutY="321.0" strokeType="OUTSIDE" strokeWidth="0.0" text="compiler options" />
+      <Text layoutX="72.0" layoutY="345.0" strokeType="OUTSIDE" strokeWidth="0.0" text="linking options" />
+      <Text layoutX="72.0" layoutY="369.0" strokeType="OUTSIDE" strokeWidth="0.0" text="execute options" />
+      <Text layoutX="72.0" layoutY="394.0" strokeType="OUTSIDE" strokeWidth="0.0" text="debugging options" />
       <Text layoutX="291.0" layoutY="321.0" strokeType="OUTSIDE" strokeWidth="0.0" text="compiler options" />
       <Text layoutX="291.0" layoutY="353.0" strokeType="OUTSIDE" strokeWidth="0.0" text="linking options" />
-      <Text layoutX="292.0" layoutY="387.0" strokeType="OUTSIDE" strokeWidth="0.0" text="execute options" />
-      <Text layoutX="410.0" layoutY="321.0" strokeType="OUTSIDE" strokeWidth="0.0" text="debugging options" />
+      <Text layoutX="291.0" layoutY="387.0" strokeType="OUTSIDE" strokeWidth="0.0" text="execute options" />
+      <Text layoutX="408.0" layoutY="321.0" strokeType="OUTSIDE" strokeWidth="0.0" text="debugging options" />
       <Text layoutX="408.0" layoutY="387.0" strokeType="OUTSIDE" strokeWidth="0.0" text="code generation">
          <font>
             <Font name="System Bold" size="12.0" />
