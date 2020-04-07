@@ -33,16 +33,32 @@ public class workingPageController implements Initializable {
     Button developerOptions;
     @FXML
     Button codeOptimization;
-
-    ObservableList unUsedList = FXCollections.observableArrayList();
-    ObservableList UsedList = FXCollections.observableArrayList();
-    List<Button> allButton = new ArrayList<Button>();
     @FXML
     private ChoiceBox<String> series;
+
+    ObservableList <String> unUsedList = FXCollections.observableArrayList();
+    ObservableList UsedList = FXCollections.observableArrayList();
+    List<Button> allButton = new ArrayList<Button>();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         loadData();
+        series.getSelectionModel().selectedIndexProperty().addListener((observableValue, number, t1) -> {
+//                unUsedList.get(t1)
+            for (String s : unUsedList) {
+                if (unUsedList.get(t1.intValue()).equals(s)) {
+                    for (Button button:allButton){
+                        if (button.getId().equals(s)){
+                            button.setVisible(true);
+                            unUsedList.remove(s);
+                            series.getItems().clear();
+                            series.getItems().addAll(unUsedList);
+                            break;
+                        }
+                    }
+                }
+            }
+        });
     }
 
     private void loadData() {
@@ -52,28 +68,10 @@ public class workingPageController implements Initializable {
         allButton.add(debuggingOptions);
         allButton.add(linkingOptions);
         allButton.add(executeOptions);
-        allButton.add(codeGeneration);
+        allButton.add(codeGenergation);
         allButton.add(developerOptions);
         allButton.add(codeOptimization);
-        series.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
-            @Override
-            public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
-//                unUsedList.get(t1)
-                for (Object o : unUsedList) {
-                    if (unUsedList.get(t1.intValue()).equals(o)) {
-                        for (Button button:allButton){
-                            if (button.getId().equals(o)){
-                                button.setVisible(true);
-                                unUsedList.remove(o);
-                                series.getItems().clear();
-                                series.getItems().addAll(unUsedList);
-                                break;
-                            }
-                        }
-                    }
-                }
-            }
-        });
+
     }
 
     public void clickCompilerOptions(ActionEvent actionEvent) {
