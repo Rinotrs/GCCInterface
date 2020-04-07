@@ -13,7 +13,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
 
-        Parent mainScreen = FXMLLoader.load(getClass().getResource("/view/workingPage.fxml"));
+        Parent mainScreen = FXMLLoader.load(getClass().getResource("/view/enterPage.fxml"));
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setBuilderFactory(new JavaFXBuilderFactory());
         primaryStage.setTitle("GCC Interface");
