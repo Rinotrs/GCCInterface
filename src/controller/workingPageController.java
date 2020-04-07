@@ -68,7 +68,7 @@ public class workingPageController implements Initializable {
         allButton.add(debuggingOptions);
         allButton.add(linkingOptions);
         allButton.add(executeOptions);
-        allButton.add(codeGenergation);
+        allButton.add(codeGeneration);
         allButton.add(developerOptions);
         allButton.add(codeOptimization);
 

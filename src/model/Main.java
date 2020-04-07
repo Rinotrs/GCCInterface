@@ -17,7 +17,7 @@ public class Main extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setBuilderFactory(new JavaFXBuilderFactory());
         primaryStage.setTitle("GCC Interface");
-        primaryStage.setScene(new Scene(mainScreen, 1000, 1000));
+        primaryStage.setScene(new Scene(mainScreen, 1000, 800));
         primaryStage.setResizable(false);
 //        workingPageController controller = fxmlLoader.getController();
 //        controller.init();
