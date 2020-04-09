@@ -8,7 +8,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
 <BorderPane stylesheets="@../css/workingPageCSS.css" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0"
-            prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.201" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.workingPage_1Controller">
+            prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.201" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.workingPage_3Controller">
     <center>
         <SplitPane dividerPositions="0.779559118236473" prefHeight="240.0" prefWidth="333.0" BorderPane.alignment="CENTER">
             <items>
@@ -19,10 +19,10 @@
                 </AnchorPane>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="560.0" prefWidth="248.0" style="-fx-background-color: #79CDCD">
                     <children>
-                        <Pane layoutX="36.0" layoutY="15.0" prefHeight="150.0" prefWidth="140.0">
-                            <ImageView fitHeight="140.0" fitWidth="150.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <Pane layoutX="36.0" layoutY="17.0" prefHeight="150.0" prefWidth="140.0">
+                            <ImageView fitHeight="125.0" fitWidth="135.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                 <image>
-                                    <Image url="/pictures/noviceLogo.png" />
+                                    <Image url="/pictures/expertLogo.png" />
                                 </image>
                             </ImageView>
                         </Pane>
@@ -30,14 +30,11 @@
                         <Button fx:id="debuggingOptions" layoutY="200.0" mnemonicParsing="false" onAction="#clickDebuggingOptions" text="Debugging Options" textFill="white" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" visible="true" />
                         <Button fx:id="linkingOptions" layoutY="240.0" mnemonicParsing="false" onAction="#clickLinkingOptions" text="Linking Options" textFill="white" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" visible="true"/>
                         <Button fx:id="executeOptions" layoutY="280.0" mnemonicParsing="false" onAction="#clickExecuteOptions" text=" Execute Options" textFill="white" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" visible="true" />
-                        <Button fx:id="codeGeneration" layoutY="320.0" mnemonicParsing="false" onAction="#clickCodeGeneration" text=" Code Generation" textFill="white" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0"  visible="false"/>
-                        <Button fx:id="codeOptimization" layoutY="360.0" mnemonicParsing="false" onAction="#clickDeveloperOptions" text="Code Optimization" textFill="white" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0"  visible="false"/>
-                        <Button fx:id="developerOptions" layoutY="400.0" mnemonicParsing="false" onAction="#clickCodeOptimization" text=" Developer Options" textFill="white" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0"  visible="false"/>
-                        <Text layoutY="500.0" strokeType="OUTSIDE" strokeWidth="0.0" text="  Add new functions" wrappingWidth="286.05078125">
-                            <font>
-                                <Font size="12.0" />
-                            </font></Text>
-                        <ChoiceBox fx:id="series" layoutY="510.0" prefHeight="26.0" prefWidth="202.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" />
+                        <Button fx:id="codeGeneration" layoutY="320.0" mnemonicParsing="false" onAction="#clickCodeGeneration" text=" Code Generation" textFill="white" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0"  visible="true"/>
+                        <Button fx:id="codeOptimization" layoutY="360.0" mnemonicParsing="false" onAction="#clickDeveloperOptions" text="Code Optimization" textFill="white" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0"  visible="true"/>
+                        <Button fx:id="developerOptions" layoutY="400.0" mnemonicParsing="false" onAction="#clickCodeOptimization" text=" Developer Options" textFill="white" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0"  visible="true"/>
+
+
                     </children>
                 </AnchorPane>
             </items>

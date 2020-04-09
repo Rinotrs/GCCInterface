@@ -17,7 +17,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class workingPageController implements Initializable {
+public class workingPage_2Controller implements Initializable {
 
     @FXML
     Button compilerOptions;
@@ -62,12 +62,8 @@ public class workingPageController implements Initializable {
     }
 
     private void loadData() {
-        unUsedList.addAll("debuggingOptions", "compilerOptions", "linkingOptions", "executeOptions", "codeGeneration", "developerOptions", "codeOptimization");
+        unUsedList.addAll(  "Code Optimization");
         series.getItems().addAll(unUsedList);
-        allButton.add(compilerOptions);
-        allButton.add(debuggingOptions);
-        allButton.add(linkingOptions);
-        allButton.add(executeOptions);
         allButton.add(codeGeneration);
         allButton.add(developerOptions);
         allButton.add(codeOptimization);
