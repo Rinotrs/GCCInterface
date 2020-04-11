@@ -11,6 +11,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import util.SMARTGCC_LegacySwingVersion;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -36,10 +37,13 @@ public class enterPageController implements Initializable {
         try{
             int userType=-1;
             if(novice.isSelected()){
+                //SMARTGCC_LegacySwingVersion.startSMARTGCC("novice");
                 userType=1;
             }else if(typical.isSelected()){
+                //SMARTGCC_LegacySwingVersion.startSMARTGCC("typical");
                 userType=2;
             }else{
+                //SMARTGCC_LegacySwingVersion.startSMARTGCC("expert");
                 userType=3;
             }
             //TODO：要做3 个页面 workingPage_1.fxml, workingPage_2.fxml, workingPage_3.fxml

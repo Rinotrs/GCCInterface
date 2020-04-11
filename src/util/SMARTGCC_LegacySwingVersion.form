@@ -170,7 +170,7 @@
                 <properties/>
                 <border type="none"/>
                 <children>
-                  <component id="ec449" class="javax.swing.JRadioButton" binding="noviceRadioButton" default-binding="true">
+                  <component id="ec449" class="javax.swing.JRadioButton" binding="noviceRadioButton" custom-create="true" default-binding="true">
                     <constraints>
                       <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
@@ -179,7 +179,7 @@
                       <text value="&amp;Novice"/>
                     </properties>
                   </component>
-                  <component id="c5709" class="javax.swing.JRadioButton" binding="typicalRadioButton" default-binding="true">
+                  <component id="c5709" class="javax.swing.JRadioButton" binding="typicalRadioButton" custom-create="true" default-binding="true">
                     <constraints>
                       <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
@@ -187,7 +187,7 @@
                       <text value="&amp;Typical"/>
                     </properties>
                   </component>
-                  <component id="ef50b" class="javax.swing.JRadioButton" binding="expertRadioButton" default-binding="true">
+                  <component id="ef50b" class="javax.swing.JRadioButton" binding="expertRadioButton" custom-create="true" default-binding="true">
                     <constraints>
                       <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
