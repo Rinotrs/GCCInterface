@@ -8,6 +8,8 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class SMARTGCC_LegacySwingVersion extends JDialog {
     private JPanel contentPane;
@@ -109,7 +111,7 @@ public class SMARTGCC_LegacySwingVersion extends JDialog {
     }
 
     public static void main(String[] args) throws IOException, InterruptedException {
-        startSMARTGCC("expert");
+        startSMARTGCC("novice");
     }
 
     public static void startSMARTGCC(String usertype) {
@@ -120,8 +122,9 @@ public class SMARTGCC_LegacySwingVersion extends JDialog {
         if (usertype.equalsIgnoreCase("typical")) dialog.typicalRadioButton.doClick();
         if (usertype.equalsIgnoreCase("expert")) dialog.expertRadioButton.doClick();
 
+        dialog.setLocationRelativeTo(null);
         dialog.setVisible(true);
-        //System.exit(0);
+        System.exit(0);
     }
 
     private void createUIComponents() {
@@ -151,19 +154,19 @@ public class SMARTGCC_LegacySwingVersion extends JDialog {
         typicalRadioButton = new JRadioButton();
         expertRadioButton = new JRadioButton();
 
-        sideBar.setCurrentSection(section_compiler);
+        sideBar.setCurrentSection(section_linking);
         listPanel.add(sideBar, BorderLayout.CENTER);
 
         //listPanel.add(/*new JLabel("<html><body><h1>central panel</html>", JLabel.CENTER)*/checkboxes,BorderLayout.CENTER);
 
-        tabbedPane.add("GCC Parameter Options", listPanel);
+        tabbedPane.add("Select GCC Parameter Options", listPanel);
 
         this.menu1 = new JPanel(new BorderLayout());
         this.menu1.add(tabbedPane, BorderLayout.CENTER);
 
         this.terminalpane2 = new JPanel(new BorderLayout());
         this.terminalpane2.add(SOEN6751_TerminalOutput.getTerminalContainer(), BorderLayout.CENTER);
-        System.out.println("Welcome to SMARTGCC (legacy version)");
+        System.out.println("Welcome to SMARTGCC (legacy version)\n");
 /*        try {
             SOEN6751_TerminalOutput.testSomeOutput();
         } catch (IOException | InterruptedException ex) {
@@ -177,15 +180,24 @@ public class SMARTGCC_LegacySwingVersion extends JDialog {
         //https://bugs.openjdk.java.net/browse/JDK-5082531
         JPanel checkboxes = new JPanel(new WrapLayout(FlowLayout.CENTER));
         for (String opt : compilerOptions) {
-            JCheckBox optchip = new JCheckBox(opt);
+            String opt_html = "<html>"+opt+"</html>";
+            Pattern p = Pattern.compile("(<html>.*=)(.*)(</html>)");
+            Matcher m = p.matcher(opt_html);
+            String output = opt_html;
+            if (m.find()) {
+                output = m.replaceFirst("$1<font color=\"red\">$2</font>$3");
+            }
+
+            JCheckBox optchip = new JCheckBox(output);
+            optchip.setActionCommand(opt);
             optchip.setBorderPainted(true);
             optchip.setBorderPaintedFlat(true);
             optchip.addItemListener(e -> {
                 if (e.getStateChange() == ItemEvent.SELECTED) {
-                    l.add(optchip.getText());
+                    l.add(optchip.getActionCommand()/*.getText()*/);
                     optchip.setBackground(Color.GREEN);
                 } else {
-                    l.remove(optchip.getText());
+                    l.remove(optchip.getActionCommand()/*.getText()*/);
                     optchip.setBackground(Color.YELLOW);
                 }
                 gccPreviewTxt.setText("gcc " + String.join(" ", l));

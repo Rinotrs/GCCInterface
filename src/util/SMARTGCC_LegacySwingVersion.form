@@ -64,7 +64,7 @@
               </grid>
             </constraints>
             <properties>
-              <dividerLocation value="100"/>
+              <dividerLocation value="150"/>
               <orientation value="0"/>
             </properties>
             <border type="none"/>
@@ -123,10 +123,12 @@
                       <component id="bca31" class="javax.swing.JTextArea" binding="gccPreviewTxt">
                         <constraints/>
                         <properties>
-                          <editable value="false"/>
-                          <font name="Courier New" size="18" style="1"/>
-                          <foreground color="-16776961"/>
+                          <background color="-16776961"/>
+                          <editable value="true"/>
+                          <font name="Monospaced" size="18" style="1"/>
+                          <foreground color="-1"/>
                           <lineWrap value="true"/>
+                          <text value="gcc"/>
                           <wrapStyleWord value="false"/>
                         </properties>
                       </component>
@@ -203,7 +205,7 @@
                 </constraints>
                 <properties>
                   <font name="Verdana" size="12" style="1"/>
-                  <text value="Select User Type Here"/>
+                  <text value="Change User Type Here"/>
                 </properties>
               </component>
             </children>
