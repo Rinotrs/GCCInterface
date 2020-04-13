@@ -1,7 +1,13 @@
 package util;
 
+import org.jsoup.nodes.Document;
+
+import java.io.IOException;
+
+import static util.GCCDocParser.getDocumentation;
+
 public class SOEN6751_OptionsModel {
-    public static String[] compiler = {
+    public static String[] compiler;/* = {
             "-fabi-version=n","-fno-access-control","-faligned-new=n",
             "-fargs-in-order=n","-fchar8_t","-fcheck-new","-fconstexpr-depth=n",
             "-fconstexpr-loop-limit=n","-fconstexpr-ops-limit=n",
@@ -24,9 +30,8 @@ public class SOEN6751_OptionsModel {
             "-Wno-non-template-friend","-Wold-style-cast","-Woverloaded-virtual",
             "-Wno-pmf-conversions","-Wno-class-conversion","-Wno-terminate",
             "-Wsign-promo","-Wvirtual-inheritance"
-    };
-
-    public static String[] linking = {
+    };*/
+    public static String[] linking; /*{
             "object-file-name","-fuse-ld=linker","-llibrary","-nostartfiles",
             "-nodefaultlibs","-nolibc","-nostdlib","-eentry", "--entry=entry","-pie",
             "-pthread","-r","-rdynamic","-s","-static","-static-pie","-static-libgcc",
@@ -34,17 +39,15 @@ public class SOEN6751_OptionsModel {
             "-static-liblsan","-static-libubsan","-shared","-shared-libgcc",
             "-symbolic","-Tscript","-Wloption","-Xlinkeroption","-usymbol","-z",
             "keyword"
-    };
-
-    public static String[] execute = {
+    };*/
+    public static String[] execute;/* = {
             "-c","-S","-E","-ofile","-x language","-v","-###","--help[=class[,...]]",
             "--target-help","--version","-pass-exit-codes","-pipe","-specs=file",
             "-wrapper@file","-ffile-prefix-map=old=new","-fplugin=file",
             "-fplugin-arg-name=arg","-fdump-ada-spec[-slim]",
             "-fada-spec-parent=unit","-fdump-go-spec=file"
-    };
-
-    public static String[] debugging = {
+    };*/
+    public static String[] debugging;/* = {
             "-g","-glevel","-gdwarf","-gdwarf-version","-ggdb",
             "-grecord-gcc-switches","-gno-record-gcc-switches","-gstabs","-gstabs+",
             "-gstrict-dwarf","-gno-strict-dwarf","-gas-loc-support",
@@ -61,9 +64,8 @@ public class SOEN6751_OptionsModel {
             "-feliminate-unused-debug-symbols","-femit-class-debug-always",
             "-fno-merge-debug-strings","-fno-dwarf2-cfi-asm","-fvar-tracking",
             "-fvar-tracking-assignments"
-    };
-
-    public static String[] optimization = {
+    };*/
+    public static String[] optimization;/* = {
             "-faggressive-loop-optimizations",
             "-falign-functions[=n[:m:[n2[:m2]]]]",
             "-falign-jumps[=n[:m:[n2[:m2]]]]","-falign-labels[=n[:m:[n2[:m2]]]]",
@@ -87,9 +89,8 @@ public class SOEN6751_OptionsModel {
             "-finline-limit=n","-finline-small-functions","-fipa-cp",
             "-fipa-cp-clone","-fipa-bit-cp","-fipa-vrp","-fipa-pta","-fipa-profile",
             "-fipa-pure-const","-fipa-reference","-fipa-reference-addressable"
-    };
-
-    public static String[] generation = {
+    };*/
+    public static String[] generation;/* = {
             "-fcall-saved-reg","-fcall-used-reg","-ffixed-reg","-fexceptions",
             "-fnon-call-exceptions","-fdelete-dead-exceptions","-funwind-tables",
             "-fasynchronous-unwind-tables","-fno-gnu-unique",
@@ -101,9 +102,8 @@ public class SOEN6751_OptionsModel {
             "-ftrampolines","-ftrapv","-fwrapv",
             "-fvisibility=[default|internal|hidden|protected]",
             "-fstrict-volatile-bitfields","-fsync-libcalls"
-    };
-
-    public static String[] developer = {
+    };*/
+    public static String[] developer;/* = {
             "-dletters","-dumpspecs","-dumpmachine","-dumpversion",
             "-dumpfullversion","-fchecking","-fchecking=n","-fdbg-cnt-list",
             "-fdbg-cnt=counter-value-list","-fdisable-ipa-pass_name",
@@ -132,6 +132,39 @@ public class SOEN6751_OptionsModel {
             "-print-search-dirs","-Q","-print-sysroot",
             "-print-sysroot-headers-suffix","-save-temps","-save-temps=cwd",
             "-save-temps=obj","-time[=file]"
-    };
+    };*/
 
+    public static Document compiler_documentation;
+    public static Document linking_documentation;
+    public static Document execute_documentation;
+    public static Document debugging_documentation;
+    public static Document generation_documentation;
+    public static Document optimization_documentation;
+    public static Document developer_documentation;
+
+    static {
+        try {
+            compiler_documentation = getDocumentation("compiler", GCCDocParser.LOCAL);
+            linking_documentation = getDocumentation("linking", GCCDocParser.LOCAL);
+            execute_documentation = getDocumentation("execute", GCCDocParser.LOCAL);
+            debugging_documentation = getDocumentation("debugging", GCCDocParser.LOCAL);
+            generation_documentation = getDocumentation("generation", GCCDocParser.LOCAL);
+            optimization_documentation = getDocumentation("optimization", GCCDocParser.LOCAL);
+            developer_documentation = getDocumentation("developer", GCCDocParser.LOCAL);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        compiler = GCCDocParser.getParametersList(compiler_documentation).toArray(new String[0]);
+        linking = GCCDocParser.getParametersList(linking_documentation).toArray(new String[0]);
+        execute = GCCDocParser.getParametersList(execute_documentation).toArray(new String[0]);
+        debugging = GCCDocParser.getParametersList(debugging_documentation).toArray(new String[0]);
+        generation = GCCDocParser.getParametersList(generation_documentation).toArray(new String[0]);
+        optimization = GCCDocParser.getParametersList(optimization_documentation).toArray(new String[0]);
+        developer = GCCDocParser.getParametersList(developer_documentation).toArray(new String[0]);
+    }
+
+    public SOEN6751_OptionsModel() {
+
+    }
 }
