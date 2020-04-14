@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Button;
+import javafx.stage.Stage;
 
 import java.awt.*;
 import java.net.URL;
@@ -36,7 +37,22 @@ public class workingPage_2Controller implements Initializable {
     @FXML
     private ChoiceBox<String> series;
 
-    ObservableList <String> unUsedList = FXCollections.observableArrayList();
+    @FXML
+    private Button closeButton;
+
+    @FXML
+    private void closeButtonAction() {
+        Stage stage = (Stage) closeButton.getScene().getWindow();
+        stage.close();
+    }
+
+    @FXML
+    private void closeWindow() {
+        Stage stage = (Stage) series.getScene().getWindow();
+        stage.close();
+    }
+
+    ObservableList<String> unUsedList = FXCollections.observableArrayList();
     ObservableList UsedList = FXCollections.observableArrayList();
     List<Button> allButton = new ArrayList<Button>();
 
@@ -47,8 +63,8 @@ public class workingPage_2Controller implements Initializable {
 //                unUsedList.get(t1)
             for (String s : unUsedList) {
                 if (unUsedList.get(t1.intValue()).equals(s)) {
-                    for (Button button:allButton){
-                        if (button.getId().equals(s)){
+                    for (Button button : allButton) {
+                        if (button.getId().equals(s)) {
                             button.setVisible(true);
                             unUsedList.remove(s);
                             series.getItems().clear();
@@ -62,7 +78,7 @@ public class workingPage_2Controller implements Initializable {
     }
 
     private void loadData() {
-        unUsedList.addAll(  "Code Optimization");
+        unUsedList.addAll("Code Optimization");
         series.getItems().addAll(unUsedList);
         allButton.add(codeGeneration);
         allButton.add(developerOptions);

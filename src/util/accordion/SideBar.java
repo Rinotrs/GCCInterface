@@ -6,84 +6,88 @@ import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 
 public class SideBar extends JPanel {
-	
-	private static final long serialVersionUID = 1L;
-	
-	/** box layout to contain side bar sections arranged vertically */
-	private BoxLayout boxLayout = new BoxLayout(this, BoxLayout.Y_AXIS);
-	
-	/** the currently expanded section */
-	private SidebarSection currentSection = null;
 
-	SideBarMode thisMode;
+    private static final long serialVersionUID = 1L;
 
-	boolean showArrow;
+    /**
+     * box layout to contain side bar sections arranged vertically
+     */
+    private BoxLayout boxLayout = new BoxLayout(this, BoxLayout.Y_AXIS);
 
-	boolean animate = false;
-	
-	public SideBar(SideBarMode mode, boolean showArrow, int preferredWidth, boolean animate) {
+    /**
+     * the currently expanded section
+     */
+    private SidebarSection currentSection = null;
 
-		this.showArrow = showArrow;
-		this.thisMode = mode;
-		this.animate = animate;
-		
-		this.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		
-		setLayout(boxLayout);
-		
-		setPreferredSize(new Dimension(preferredWidth, getPreferredSize().height));
-		
-		setFocusable(false);
-		
+    SideBarMode thisMode;
+
+    boolean showArrow;
+
+    boolean animate = false;
+
+    public SideBar(SideBarMode mode, boolean showArrow, int preferredWidth, boolean animate) {
+
+        this.showArrow = showArrow;
+        this.thisMode = mode;
+        this.animate = animate;
+
+        this.setCursor(new Cursor(Cursor.HAND_CURSOR));
+
+        setLayout(boxLayout);
+
+        setPreferredSize(new Dimension(preferredWidth, getPreferredSize().height));
+
+        setFocusable(false);
+
         this.addComponentListener(new ComponentAdapter() {
             public void componentResized(ComponentEvent e) {
-            	resize();
+                resize();
             }
         });
-		
-		revalidate();
-	}
-	
+
+        revalidate();
+    }
+
     public void resize() {
-    	if (currentSection != null) {
-        	currentSection.setMaximumSize(new Dimension(Integer.MAX_VALUE, this.getHeight()));
-        	currentSection.contentPane.setVisible(true);
-        	currentSection.revalidate();
-    	}
-	}
-	
+        if (currentSection != null) {
+            currentSection.setMaximumSize(new Dimension(Integer.MAX_VALUE, this.getHeight()));
+            currentSection.contentPane.setVisible(true);
+            currentSection.revalidate();
+        }
+    }
+
     public void addSection(SidebarSection newSection, boolean collapse) {
- 		add(newSection);
- 		if(collapse){
-             newSection.collapse(false);
-         }else{
-             setCurrentSection(newSection);
-         }
- 	}
-    
+        add(newSection);
+        if (collapse) {
+            newSection.collapse(false);
+        } else {
+            setCurrentSection(newSection);
+        }
+    }
+
     public void addSection(SidebarSection newSection) {
-    	addSection(newSection, true);
- 	}
-	
-	public boolean isCurrentExpandedSection(SidebarSection section) {
-		return (section != null) && (currentSection != null)
-				&& section.equals(currentSection);
-	}
+        addSection(newSection, true);
+    }
 
-	public SideBarMode getMode() {
-		return thisMode;
-	}
+    public boolean isCurrentExpandedSection(SidebarSection section) {
+        return (section != null) && (currentSection != null)
+                && section.equals(currentSection);
+    }
 
-	public SidebarSection getCurrentSection() {
-		return currentSection;
-	}
+    public SideBarMode getMode() {
+        return thisMode;
+    }
 
-	public void setCurrentSection(SidebarSection section) {
-		currentSection = section;
-	}
-	
-	public enum SideBarMode {
-		TOP_LEVEL, INNER_LEVEL;
-	}
+    public SidebarSection getCurrentSection() {
+        return currentSection;
+    }
+
+    public void setCurrentSection(SidebarSection section) {
+        currentSection = section;
+    }
+
+    public enum SideBarMode {
+        TOP_LEVEL, INNER_LEVEL;
+    }
 
 }

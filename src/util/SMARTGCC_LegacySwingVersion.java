@@ -180,7 +180,7 @@ public class SMARTGCC_LegacySwingVersion extends JDialog {
         //https://bugs.openjdk.java.net/browse/JDK-5082531
         JPanel checkboxes = new JPanel(new WrapLayout(FlowLayout.CENTER));
         for (String opt : compilerOptions) {
-            String opt_html = "<html>"+opt+"</html>";
+            String opt_html = "<html>" + opt + "</html>";
             Pattern p = Pattern.compile("(<html>.*=)(.*)(</html>)");
             Matcher m = p.matcher(opt_html);
             String output = opt_html;

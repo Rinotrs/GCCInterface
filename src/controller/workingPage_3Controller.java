@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Button;
+import javafx.stage.Stage;
 
 import java.awt.*;
 import java.net.URL;
@@ -33,6 +34,16 @@ public class workingPage_3Controller {
     Button developerOptions;
     @FXML
     Button codeOptimization;
+
+    @FXML
+    private Button closeButton;
+
+    @FXML
+    private void closeWindow() {
+        Stage stage = (Stage) closeButton.getScene().getWindow();
+        stage.close();
+    }
+
 
     public void clickCompilerOptions(ActionEvent actionEvent) {
     }
