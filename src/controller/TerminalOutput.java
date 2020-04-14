@@ -50,13 +50,15 @@ public class TerminalOutput implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        backgroundPane.styleProperty().set("-fx-background-color: black;");
+        backgroundPane.styleProperty().set("-fx-background-color: white;");
 
         outputArea.setBackground(new Background(new BackgroundFill(Color.BLACK,CornerRadii.EMPTY, Insets.EMPTY)));
-        outputArea.setStyle("-fx-text-fill:green;-fx-font-size:16px;");
+        outputArea.setStyle("-fx-text-fill:black;-fx-font-size:18px;");
         outputArea.setPrefSize(Double.MAX_VALUE,Double.MAX_VALUE);
 
         TerminalOutputStream.setTerminalTo(outputArea);
+
+
 
         try {
             SOEN6751_GccProcLib.run(currentCommand);
