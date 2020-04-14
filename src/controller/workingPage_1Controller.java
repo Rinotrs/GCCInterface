@@ -113,7 +113,7 @@ public class workingPage_1Controller implements Initializable {
         ColumnConstraints col3 = new ColumnConstraints();
         col3.setPercentWidth(33);
         grid.getColumnConstraints().addAll(col1,col2,col3);*/
-        grid.setBackground(new Background(new BackgroundFill(Color.rgb(200,200,230),CornerRadii.EMPTY, Insets.EMPTY)));
+        grid.setBackground(new Background(new BackgroundFill(Color.rgb(100,200,200),CornerRadii.EMPTY, Insets.EMPTY)));
 
         currText = "gcc";
         textArea.setText(currText);

@@ -38,7 +38,7 @@
         </RadioButton>
         <RadioButton fx:id="typical" layoutX="391.0" layoutY="427.0" mnemonicParsing="false" selected="false"
                      toggleGroup="$experience"/>
-        <RadioButton fx:id="expert" layoutX="684.0" layoutY="427.0" mnemonicParsing="false" selected="false"
+        <RadioButton fx:id="expert" layoutX="725.0" layoutY="427.0" mnemonicParsing="false" selected="false"
                      toggleGroup="$experience"/>
 
         <Button layoutX="350" layoutY="501.0" mnemonicParsing="false" onAction="#clickSure" prefHeight="38.0"
@@ -134,8 +134,8 @@
         </Pane>
         <Line endY="45.0" layoutX="401.0" layoutY="353.0" startY="-45.0"/>
         <Line endY="45.0" layoutX="733.0" layoutY="353.0" startY="-45.0"/>
-        <Button fx:id="closeButton" layoutX="705.0" layoutY="125.0" mnemonicParsing="false"
-                onMouseClicked="#closeWindow" text="X"/>
+<!--        <Button fx:id="closeButton" layoutX="705.0" layoutY="125.0" mnemonicParsing="false"
+                onMouseClicked="#closeWindow" text="X"/>-->
 
     </children>
 
