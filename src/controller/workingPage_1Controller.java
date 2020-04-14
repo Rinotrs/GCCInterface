@@ -5,12 +5,14 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.FontPosture;
@@ -32,7 +34,6 @@ import java.util.ResourceBundle;
 
 public class workingPage_1Controller implements Initializable {
 
-    ProcessBuilder processBuilder = new ProcessBuilder();
 
     @FXML
     Button compilerOptions;
@@ -55,19 +56,26 @@ public class workingPage_1Controller implements Initializable {
     private Button closeButton;
 
     @FXML
-    private TextFlow textField;
-
-    @FXML
     private GridPane grid;
 
     @FXML
     private ScrollPane scrollPane;
 
     @FXML
+    private TextArea textArea;
+
+    @FXML
+    private Button executeButton;
+
+    @FXML
     private void closeWindow() {
         Stage stage = (Stage) closeButton.getScene().getWindow();
         stage.close();
     }
+
+    private String currText;
+
+    private boolean executed = false;
 
     ObservableList<String> unUsedList = FXCollections.observableArrayList();
     ObservableList UsedList = FXCollections.observableArrayList();
@@ -101,16 +109,9 @@ public class workingPage_1Controller implements Initializable {
         grid.setHgap(10);
         grid.setVgap(20);
         grid.setBackground(new Background(new BackgroundFill(Color.rgb(200,200,230),CornerRadii.EMPTY, Insets.EMPTY)));
-        /*ColumnConstraints col1 = new ColumnConstraints();
-        col1.setPercentWidth(33);
-        ColumnConstraints col2 = new ColumnConstraints();
-        col2.setPercentWidth(33);
-        ColumnConstraints col3 = new ColumnConstraints();
-        col3.setPercentWidth(33);
-        grid.getColumnConstraints().addAll(col1,col2,col3);*/
 
-
-
+        currText = "gcc";
+        textArea.setText(currText);
     }
 
     private void loadData() {
@@ -142,7 +143,13 @@ public class workingPage_1Controller implements Initializable {
                 b.setMinHeight(40);
                 b.setAccessibleText(options[index]);
                 b.setTooltip(new Tooltip(GCCDocParser.getParameterDescription(SOEN6751_OptionsModel.compiler_documentation,op)));
-
+                b.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent event) {
+                        currText+=" "+ b.getAccessibleText();
+                        textArea.setText(currText);
+                    }
+                });
                 grid.add(b, i, row);
             }
             index++;
@@ -169,5 +176,17 @@ public class workingPage_1Controller implements Initializable {
     }
 
     public void clickCodeOptimization(ActionEvent actionEvent) {
+    }
+
+    public void initializeTextArea(){
+        currText="gcc";
+        executed=false;
+    }
+
+    @FXML
+    void executeCommand(ActionEvent event) {
+
+        executed = true;
+        initializeTextArea();
     }
 }
