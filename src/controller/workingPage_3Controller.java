@@ -82,22 +82,22 @@ public class workingPage_3Controller extends workingPage_2Controller implements 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         loadData();
-        series.getSelectionModel().selectedIndexProperty().addListener((observableValue, number, t1) -> {
+//        series.getSelectionModel().selectedIndexProperty().addListener((observableValue, number, t1) -> {
 //                unUsedList.get(t1)
-            for (String s : unUsedList) {
-                if (unUsedList.get(t1.intValue()).equals(s)) {
-                    for (Button button : allButton) {
-                        if (button.getId().equals(s)) {
-                            button.setVisible(true);
-                            unUsedList.remove(s);
-                            series.getItems().clear();
-                            series.getItems().addAll(unUsedList);
-                            break;
-                        }
-                    }
-                }
-            }
-        });
+//            for (String s : unUsedList) {
+//                if (unUsedList.get(t1.intValue()).equals(s)) {
+//                    for (Button button : allButton) {
+//                        if (button.getId().equals(s)) {
+//                            button.setVisible(true);
+//                            unUsedList.remove(s);
+//                            series.getItems().clear();
+//                            series.getItems().addAll(unUsedList);
+//                            break;
+//                        }
+//                    }
+//                }
+//            }
+//        });
         scrollPane.setFitToWidth(true);
 
         grid.getChildren().clear();
