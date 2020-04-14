@@ -1,0 +1,644 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- saved from url=(0071)https://gcc.gnu.org/onlinedocs/gcc/Overall-Options.html#Overall-Options -->
+<html><!-- Copyright (C) 1988-2020 Free Software Foundation, Inc.
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.3 or
+any later version published by the Free Software Foundation; with the
+Invariant Sections being "Funding Free Software", the Front-Cover
+Texts being (a) (see below), and with the Back-Cover Texts being (b)
+(see below).  A copy of the license is included in the section entitled
+"GNU Free Documentation License".
+
+(a) The FSF's Front-Cover Text is:
+
+A GNU Manual
+
+(b) The FSF's Back-Cover Text is:
+
+You have freedom to copy and modify this GNU Manual, like GNU
+     software.  Copies published by the Free Software Foundation raise
+     funds for GNU development. --><!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ --><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>Overall Options (Using the GNU Compiler Collection (GCC))</title>
+
+<meta name="description" content="Overall Options (Using the GNU Compiler Collection (GCC))">
+<meta name="keywords" content="Overall Options (Using the GNU Compiler Collection (GCC))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="https://gcc.gnu.org/onlinedocs/gcc/index.html#Top" rel="start" title="Top">
+<link href="https://gcc.gnu.org/onlinedocs/gcc/Option-Index.html#Option-Index" rel="index" title="Option Index">
+<link href="https://gcc.gnu.org/onlinedocs/gcc/index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="https://gcc.gnu.org/onlinedocs/gcc/Invoking-GCC.html#Invoking-GCC" rel="up" title="Invoking GCC">
+<link href="https://gcc.gnu.org/onlinedocs/gcc/Invoking-G_002b_002b.html#Invoking-G_002b_002b" rel="next" title="Invoking G++">
+<link href="https://gcc.gnu.org/onlinedocs/gcc/Option-Summary.html#Option-Summary" rel="prev" title="Option Summary">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="./Overall Options (Using the GNU Compiler Collection (GCC))_files/gcc.css">
+
+
+<style type="text/css" id="e65b7506-e2cd-46ab-80f1-04da5d23a8b4">.af3090df-aefd-4a4d-a0c3-2d9a064b4544 { position: relative !important; border-radius: 0.2em !important; padding: 0px !important; margin: 0px !important; }
+
+.fae9cff0-90ed-4ad2-8284-304a86230c0d .ssh-close { position: absolute; left: -8px; top: -8px; width: 16px; height: 16px; z-index: 999; border: none; background: url("data:image/png;base64,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") no-repeat border-box; animation-duration: 275ms; animation-timing-function: ease-out; box-shadow: none; animation-name: f37894f7-13a1-4b6f-84ab-ed727d98c553; }
+
+.fae9cff0-90ed-4ad2-8284-304a86230c0d .ssh-close:hover, .fae9cff0-90ed-4ad2-8284-304a86230c0d .ssh-close:focus { background-image: url("data:image/png;base64,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"); }
+
+@media print {
+  .fae9cff0-90ed-4ad2-8284-304a86230c0d { box-shadow: unset !important; -webkit-print-color-adjust: exact !important; }
+}
+
+@keyframes f37894f7-13a1-4b6f-84ab-ed727d98c553 { 
+  0% { opacity: 0; transform: scale(0.6); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes f3019d34-a68c-49ba-8c3c-b65e40d3013b { 
+  100% { opacity: 0; transform: scale(0.3); }
+}
+
+.fae9cff0-90ed-4ad2-8284-304a86230c0d { background-color: rgba(238, 238, 238, 0.8); color: rgb(170, 170, 170); font: inherit; box-shadow: rgb(238, 238, 238) 0px 0px 0.35em; text-shadow: none !important; }
+
+.default-red-aa94e3d5-ab2f-4205-b74e-18ce31c7c0ce { box-shadow: rgb(255, 128, 128) 0px 0px 0.35em; background-color: rgba(255, 128, 128, 0.8) !important; color: rgb(0, 0, 0) !important; }
+
+.default-orange-da01945e-1964-4d27-8a6c-3331e1fe7f14 { box-shadow: rgb(255, 210, 170) 0px 0px 0.35em; background-color: rgba(255, 210, 170, 0.8) !important; color: rgb(0, 0, 0) !important; }
+
+.default-yellow-aaddcf5c-0e41-4f83-8a64-58c91f7c6250 { box-shadow: rgb(255, 255, 170) 0px 0px 0.35em; background-color: rgba(255, 255, 170, 0.8) !important; color: rgb(0, 0, 0) !important; }
+
+.default-green-c4d41e0a-e40f-4c3f-91ad-2d66481614c2 { box-shadow: rgb(170, 255, 170) 0px 0px 0.35em; background-color: rgba(170, 255, 170, 0.8) !important; color: rgb(0, 0, 0) !important; }
+
+.default-cyan-f88e8827-e652-4d79-a9d9-f6c8b8ec9e2b { box-shadow: rgb(170, 255, 255) 0px 0px 0.35em; background-color: rgba(170, 255, 255, 0.8) !important; color: rgb(0, 0, 0) !important; }
+
+.default-purple-c472dcdb-f2b8-41ab-bb1e-2fb293df172a { box-shadow: rgb(255, 170, 255) 0px 0px 0.35em; background-color: rgba(255, 170, 255, 0.8) !important; color: rgb(0, 0, 0) !important; }
+
+.default-grey-da7cb902-89c6-46fe-b0e7-d3b35aaf237a { box-shadow: rgb(119, 119, 119) 0px 0px 0.35em; background-color: rgba(119, 119, 119, 0.8) !important; color: rgb(255, 255, 255) !important; }</style></head>
+
+<body lang="en">
+<a name="Overall-Options"></a>
+<div class="header">
+<p>
+Next: <a href="https://gcc.gnu.org/onlinedocs/gcc/Invoking-G_002b_002b.html#Invoking-G_002b_002b" accesskey="n" rel="next">Invoking G++</a>, Previous: <a href="https://gcc.gnu.org/onlinedocs/gcc/Option-Summary.html#Option-Summary" accesskey="p" rel="prev">Option Summary</a>, Up: <a href="https://gcc.gnu.org/onlinedocs/gcc/Invoking-GCC.html#Invoking-GCC" accesskey="u" rel="up">Invoking GCC</a> &nbsp; [<a href="https://gcc.gnu.org/onlinedocs/gcc/index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="https://gcc.gnu.org/onlinedocs/gcc/Option-Index.html#Option-Index" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<a name="Options-Controlling-the-Kind-of-Output"></a>
+<h3 class="section">3.2 Options Controlling the Kind of Output</h3>
+
+<p>Compilation can involve up to four stages: preprocessing, compilation
+proper, assembly and linking, always in that order.  GCC is capable of
+preprocessing and compiling several files either into several
+assembler input files, or into one assembler input file; then each
+assembler input file produces an object file, and linking combines all
+the object files (those newly compiled, and those specified as input)
+into an executable file.
+</p>
+<a name="index-file-name-suffix"></a>
+<p>For any given input file, the file name suffix determines what kind of
+compilation is done:
+</p>
+<dl compact="compact">
+<dt><code><var>file</var>.c</code></dt>
+<dd><p>C source code that must be preprocessed.
+</p>
+</dd>
+<dt><code><var>file</var>.i</code></dt>
+<dd><p>C source code that should not be preprocessed.
+</p>
+</dd>
+<dt><code><var>file</var>.ii</code></dt>
+<dd><p>C++ source code that should not be preprocessed.
+</p>
+</dd>
+<dt><code><var>file</var>.m</code></dt>
+<dd><p>Objective-C source code.  Note that you must link with the <samp>libobjc</samp>
+library to make an Objective-C program work.
+</p>
+</dd>
+<dt><code><var>file</var>.mi</code></dt>
+<dd><p>Objective-C source code that should not be preprocessed.
+</p>
+</dd>
+<dt><code><var>file</var>.mm</code></dt>
+<dt><code><var>file</var>.M</code></dt>
+<dd><p>Objective-C++ source code.  Note that you must link with the <samp>libobjc</samp>
+library to make an Objective-C++ program work.  Note that ‘<samp>.M</samp>’ refers
+to a literal capital M.
+</p>
+</dd>
+<dt><code><var>file</var>.mii</code></dt>
+<dd><p>Objective-C++ source code that should not be preprocessed.
+</p>
+</dd>
+<dt><code><var>file</var>.h</code></dt>
+<dd><p>C, C++, Objective-C or Objective-C++ header file to be turned into a
+precompiled header (default), or C, C++ header file to be turned into an
+Ada spec (via the <samp>-fdump-ada-spec</samp> switch).
+</p>
+</dd>
+<dt><code><var>file</var>.cc</code></dt>
+<dt><code><var>file</var>.cp</code></dt>
+<dt><code><var>file</var>.cxx</code></dt>
+<dt><code><var>file</var>.cpp</code></dt>
+<dt><code><var>file</var>.CPP</code></dt>
+<dt><code><var>file</var>.c++</code></dt>
+<dt><code><var>file</var>.C</code></dt>
+<dd><p>C++ source code that must be preprocessed.  Note that in ‘<samp>.cxx</samp>’,
+the last two letters must both be literally ‘<samp>x</samp>’.  Likewise,
+‘<samp>.C</samp>’ refers to a literal capital C.
+</p>
+</dd>
+<dt><code><var>file</var>.mm</code></dt>
+<dt><code><var>file</var>.M</code></dt>
+<dd><p>Objective-C++ source code that must be preprocessed.
+</p>
+</dd>
+<dt><code><var>file</var>.mii</code></dt>
+<dd><p>Objective-C++ source code that should not be preprocessed.
+</p>
+</dd>
+<dt><code><var>file</var>.hh</code></dt>
+<dt><code><var>file</var>.H</code></dt>
+<dt><code><var>file</var>.hp</code></dt>
+<dt><code><var>file</var>.hxx</code></dt>
+<dt><code><var>file</var>.hpp</code></dt>
+<dt><code><var>file</var>.HPP</code></dt>
+<dt><code><var>file</var>.h++</code></dt>
+<dt><code><var>file</var>.tcc</code></dt>
+<dd><p>C++ header file to be turned into a precompiled header or Ada spec.
+</p>
+</dd>
+<dt><code><var>file</var>.f</code></dt>
+<dt><code><var>file</var>.for</code></dt>
+<dt><code><var>file</var>.ftn</code></dt>
+<dd><p>Fixed form Fortran source code that should not be preprocessed.
+</p>
+</dd>
+<dt><code><var>file</var>.F</code></dt>
+<dt><code><var>file</var>.FOR</code></dt>
+<dt><code><var>file</var>.fpp</code></dt>
+<dt><code><var>file</var>.FPP</code></dt>
+<dt><code><var>file</var>.FTN</code></dt>
+<dd><p>Fixed form Fortran source code that must be preprocessed (with the traditional
+preprocessor).
+</p>
+</dd>
+<dt><code><var>file</var>.f90</code></dt>
+<dt><code><var>file</var>.f95</code></dt>
+<dt><code><var>file</var>.f03</code></dt>
+<dt><code><var>file</var>.f08</code></dt>
+<dd><p>Free form Fortran source code that should not be preprocessed.
+</p>
+</dd>
+<dt><code><var>file</var>.F90</code></dt>
+<dt><code><var>file</var>.F95</code></dt>
+<dt><code><var>file</var>.F03</code></dt>
+<dt><code><var>file</var>.F08</code></dt>
+<dd><p>Free form Fortran source code that must be preprocessed (with the
+traditional preprocessor).
+</p>
+</dd>
+<dt><code><var>file</var>.go</code></dt>
+<dd><p>Go source code.
+</p>
+</dd>
+<dt><code><var>file</var>.brig</code></dt>
+<dd><p>BRIG files (binary representation of HSAIL).
+</p>
+</dd>
+<dt><code><var>file</var>.d</code></dt>
+<dd><p>D source code.
+</p>
+</dd>
+<dt><code><var>file</var>.di</code></dt>
+<dd><p>D interface file.
+</p>
+</dd>
+<dt><code><var>file</var>.dd</code></dt>
+<dd><p>D documentation code (Ddoc).
+</p>
+</dd>
+<dt><code><var>file</var>.ads</code></dt>
+<dd><p>Ada source code file that contains a library unit declaration (a
+declaration of a package, subprogram, or generic, or a generic
+instantiation), or a library unit renaming declaration (a package,
+generic, or subprogram renaming declaration).  Such files are also
+called <em>specs</em>.
+</p>
+</dd>
+<dt><code><var>file</var>.adb</code></dt>
+<dd><p>Ada source code file containing a library unit body (a subprogram or
+package body).  Such files are also called <em>bodies</em>.
+</p>
+
+</dd>
+<dt><code><var>file</var>.s</code></dt>
+<dd><p>Assembler code.
+</p>
+</dd>
+<dt><code><var>file</var>.S</code></dt>
+<dt><code><var>file</var>.sx</code></dt>
+<dd><p>Assembler code that must be preprocessed.
+</p>
+</dd>
+<dt><code><var>other</var></code></dt>
+<dd><p>An object file to be fed straight into linking.
+Any file name with no recognized suffix is treated this way.
+</p></dd>
+</dl>
+
+<a name="index-x"></a>
+<p>You can specify the input language explicitly with the <samp>-x</samp> option:
+</p>
+<dl compact="compact">
+<dt><code>-x <var>language</var></code></dt>
+<dd><p>Specify explicitly the <var>language</var> for the following input files
+(rather than letting the compiler choose a default based on the file
+name suffix).  This option applies to all following input files until
+the next <samp>-x</samp> option.  Possible values for <var>language</var> are:
+</p><div class="smallexample">
+<pre class="smallexample">c  c-header  cpp-output
+c++  c++-header  c++-cpp-output
+objective-c  objective-c-header  objective-c-cpp-output
+objective-c++ objective-c++-header objective-c++-cpp-output
+assembler  assembler-with-cpp
+ada
+d
+f77  f77-cpp-input f95  f95-cpp-input
+go
+brig
+</pre></div>
+
+</dd>
+<dt><code>-x none</code></dt>
+<dd><p>Turn off any specification of a language, so that subsequent files are
+handled according to their file name suffixes (as they are if <samp>-x</samp>
+has not been used at all).
+</p></dd>
+</dl>
+
+<p>If you only want some of the stages of compilation, you can use
+<samp>-x</samp> (or filename suffixes) to tell <code>gcc</code> where to start, and
+one of the options <samp>-c</samp>, <samp>-S</samp>, or <samp>-E</samp> to say where
+<code>gcc</code> is to stop.  Note that some combinations (for example,
+‘<samp>-x cpp-output -E</samp>’) instruct <code>gcc</code> to do nothing at all.
+</p>
+<dl compact="compact">
+<dt><code>-c</code></dt>
+<dd><a name="index-c"></a>
+<p>Compile or assemble the source files, but do not link.  The linking
+stage simply is not done.  The ultimate output is in the form of an
+object file for each source file.
+</p>
+<p>By default, the object file name for a source file is made by replacing
+the suffix ‘<samp>.c</samp>’, ‘<samp>.i</samp>’, ‘<samp>.s</samp>’, etc., with ‘<samp>.o</samp>’.
+</p>
+<p>Unrecognized input files, not requiring compilation or assembly, are
+ignored.
+</p>
+</dd>
+<dt><code>-S</code></dt>
+<dd><a name="index-S"></a>
+<p>Stop after the stage of compilation proper; do not assemble.  The output
+is in the form of an assembler code file for each non-assembler input
+file specified.
+</p>
+<p>By default, the assembler file name for a source file is made by
+replacing the suffix ‘<samp>.c</samp>’, ‘<samp>.i</samp>’, etc., with ‘<samp>.s</samp>’.
+</p>
+<p>Input files that don’t require compilation are ignored.
+</p>
+</dd>
+<dt><code>-E</code></dt>
+<dd><a name="index-E"></a>
+<p>Stop after the preprocessing stage; do not run the compiler proper.  The
+output is in the form of preprocessed source code, which is sent to the
+standard output.
+</p>
+<p>Input files that don’t require preprocessing are ignored.
+</p>
+<a name="index-output-file-option"></a>
+</dd>
+<dt><code>-o <var>file</var></code></dt>
+<dd><a name="index-o"></a>
+<p>Place output in file <var>file</var>.  This applies to whatever
+sort of output is being produced, whether it be an executable file,
+an object file, an assembler file or preprocessed C code.
+</p>
+<p>If <samp>-o</samp> is not specified, the default is to put an executable
+file in <samp>a.out</samp>, the object file for
+<samp><var>source</var>.<var>suffix</var></samp> in <samp><var>source</var>.o</samp>, its
+assembler file in <samp><var>source</var>.s</samp>, a precompiled header file in
+<samp><var>source</var>.<var>suffix</var>.gch</samp>, and all preprocessed C source on
+standard output.
+</p>
+</dd>
+<dt><code>-v</code></dt>
+<dd><a name="index-v"></a>
+<p>Print (on standard error output) the commands executed to run the stages
+of compilation.  Also print the version number of the compiler driver
+program and of the preprocessor and the compiler proper.
+</p>
+</dd>
+<dt><code>-###</code></dt>
+<dd><a name="index-_0023_0023_0023"></a>
+<p>Like <samp>-v</samp> except the commands are not executed and arguments
+are quoted unless they contain only alphanumeric characters or <code>./-_</code>.
+This is useful for shell scripts to capture the driver-generated command lines.
+</p>
+</dd>
+<dt><code>--help</code></dt>
+<dd><a name="index-help"></a>
+<p>Print (on the standard output) a description of the command-line options
+understood by <code>gcc</code>.  If the <samp>-v</samp> option is also specified
+then <samp>--help</samp> is also passed on to the various processes
+invoked by <code>gcc</code>, so that they can display the command-line options
+they accept.  If the <samp>-Wextra</samp> option has also been specified
+(prior to the <samp>--help</samp> option), then command-line options that
+have no documentation associated with them are also displayed.
+</p>
+</dd>
+<dt><code>--target-help</code></dt>
+<dd><a name="index-target-help"></a>
+<p>Print (on the standard output) a description of target-specific command-line
+options for each tool.  For some targets extra target-specific
+information may also be printed.
+</p>
+</dd>
+<dt><code>--help={<var>class</var><span class="roman">|[</span>^<span class="roman">]</span><var>qualifier</var>}<span class="roman">[</span>,…<span class="roman">]</span></code></dt>
+<dd><p>Print (on the standard output) a description of the command-line
+options understood by the compiler that fit into all specified classes
+and qualifiers.  These are the supported classes:
+</p>
+<dl compact="compact">
+<dt>‘<samp>optimizers</samp>’</dt>
+<dd><p>Display all of the optimization options supported by the
+compiler.
+</p>
+</dd>
+<dt>‘<samp>warnings</samp>’</dt>
+<dd><p>Display all of the options controlling warning messages
+produced by the compiler.
+</p>
+</dd>
+<dt>‘<samp>target</samp>’</dt>
+<dd><p>Display target-specific options.  Unlike the
+<samp>--target-help</samp> option however, target-specific options of the
+linker and assembler are not displayed.  This is because those
+tools do not currently support the extended <samp>--help=</samp> syntax.
+</p>
+</dd>
+<dt>‘<samp>params</samp>’</dt>
+<dd><p>Display the values recognized by the <samp>--param</samp>
+option.
+</p>
+</dd>
+<dt><var>language</var></dt>
+<dd><p>Display the options supported for <var>language</var>, where
+<var>language</var> is the name of one of the languages supported in this
+version of GCC.  If an option is supported by all languages, one needs
+to select ‘<samp>common</samp>’ class.
+</p>
+</dd>
+<dt>‘<samp>common</samp>’</dt>
+<dd><p>Display the options that are common to all languages.
+</p></dd>
+</dl>
+
+<p>These are the supported qualifiers:
+</p>
+<dl compact="compact">
+<dt>‘<samp>undocumented</samp>’</dt>
+<dd><p>Display only those options that are undocumented.
+</p>
+</dd>
+<dt>‘<samp>joined</samp>’</dt>
+<dd><p>Display options taking an argument that appears after an equal
+sign in the same continuous piece of text, such as:
+‘<samp>--help=target</samp>’.
+</p>
+</dd>
+<dt>‘<samp>separate</samp>’</dt>
+<dd><p>Display options taking an argument that appears as a separate word
+following the original option, such as: ‘<samp>-o output-file</samp>’.
+</p></dd>
+</dl>
+
+<p>Thus for example to display all the undocumented target-specific
+switches supported by the compiler, use:
+</p>
+<div class="smallexample">
+<pre class="smallexample">--help=target,undocumented
+</pre></div>
+
+<p>The sense of a qualifier can be inverted by prefixing it with the
+‘<samp>^</samp>’ character, so for example to display all binary warning
+options (i.e., ones that are either on or off and that do not take an
+argument) that have a description, use:
+</p>
+<div class="smallexample">
+<pre class="smallexample">--help=warnings,^joined,^undocumented
+</pre></div>
+
+<p>The argument to <samp>--help=</samp> should not consist solely of inverted
+qualifiers.
+</p>
+<p>Combining several classes is possible, although this usually
+restricts the output so much that there is nothing to display.  One
+case where it does work, however, is when one of the classes is
+<var>target</var>.  For example, to display all the target-specific
+optimization options, use:
+</p>
+<div class="smallexample">
+<pre class="smallexample">--help=target,optimizers
+</pre></div>
+
+<p>The <samp>--help=</samp> option can be repeated on the command line.  Each
+successive use displays its requested class of options, skipping
+those that have already been displayed.  If <samp>--help</samp> is also
+specified anywhere on the command line then this takes precedence
+over any <samp>--help=</samp> option.
+</p>
+<p>If the <samp>-Q</samp> option appears on the command line before the
+<samp>--help=</samp> option, then the descriptive text displayed by
+<samp>--help=</samp> is changed.  Instead of describing the displayed
+options, an indication is given as to whether the option is enabled,
+disabled or set to a specific value (assuming that the compiler
+knows this at the point where the <samp>--help=</samp> option is used).
+</p>
+<p>Here is a truncated example from the ARM port of <code>gcc</code>:
+</p>
+<div class="smallexample">
+<pre class="smallexample">  % gcc -Q -mabi=2 --help=target -c
+  The following options are target specific:
+  -mabi=                                2
+  -mabort-on-noreturn                   [disabled]
+  -mapcs                                [disabled]
+</pre></div>
+
+<p>The output is sensitive to the effects of previous command-line
+options, so for example it is possible to find out which optimizations
+are enabled at <samp>-O2</samp> by using:
+</p>
+<div class="smallexample">
+<pre class="smallexample">-Q -O2 --help=optimizers
+</pre></div>
+
+<p>Alternatively you can discover which binary optimizations are enabled
+by <samp>-O3</samp> by using:
+</p>
+<div class="smallexample">
+<pre class="smallexample">gcc -c -Q -O3 --help=optimizers &gt; /tmp/O3-opts
+gcc -c -Q -O2 --help=optimizers &gt; /tmp/O2-opts
+diff /tmp/O2-opts /tmp/O3-opts | grep enabled
+</pre></div>
+
+</dd>
+<dt><code>--version</code></dt>
+<dd><a name="index-version"></a>
+<p>Display the version number and copyrights of the invoked GCC.
+</p>
+</dd>
+<dt><code>-pass-exit-codes</code></dt>
+<dd><a name="index-pass-exit-codes"></a>
+<p>Normally the <code>gcc</code> program exits with the code of 1 if any
+phase of the compiler returns a non-success return code.  If you specify
+<samp>-pass-exit-codes</samp>, the <code>gcc</code> program instead returns with
+the numerically highest error produced by any phase returning an error
+indication.  The C, C++, and Fortran front ends return 4 if an internal
+compiler error is encountered.
+</p>
+</dd>
+<dt><code>-pipe</code></dt>
+<dd><a name="index-pipe"></a>
+<p>Use pipes rather than temporary files for communication between the
+various stages of compilation.  This fails to work on some systems where
+the assembler is unable to read from a pipe; but the GNU assembler has
+no trouble.
+</p>
+</dd>
+<dt><code>-specs=<var>file</var></code></dt>
+<dd><a name="index-specs"></a>
+<p>Process <var>file</var> after the compiler reads in the standard <samp>specs</samp>
+file, in order to override the defaults which the <code>gcc</code> driver
+program uses when determining what switches to pass to <code>cc1</code>,
+<code>cc1plus</code>, <code>as</code>, <code>ld</code>, etc.  More than one
+<samp>-specs=<var>file</var></samp> can be specified on the command line, and they
+are processed in order, from left to right.  See <a href="https://gcc.gnu.org/onlinedocs/gcc/Spec-Files.html#Spec-Files">Spec Files</a>, for
+information about the format of the <var>file</var>.
+</p>
+</dd>
+<dt><code>-wrapper</code></dt>
+<dd><a name="index-wrapper"></a>
+<p>Invoke all subcommands under a wrapper program.  The name of the
+wrapper program and its parameters are passed as a comma separated
+list.
+</p>
+<div class="smallexample">
+<pre class="smallexample">gcc -c t.c -wrapper gdb,--args
+</pre></div>
+
+<p>This invokes all subprograms of <code>gcc</code> under
+‘<samp>gdb --args</samp>’, thus the invocation of <code>cc1</code> is
+‘<samp>gdb --args cc1 …</samp>’.
+</p>
+</dd>
+<dt><code>-ffile-prefix-map=<var>old</var>=<var>new</var></code></dt>
+<dd><a name="index-ffile-prefix-map"></a>
+<p>When compiling files residing in directory <samp><var>old</var></samp>, record
+any references to them in the result of the compilation as if the
+files resided in directory <samp><var>new</var></samp> instead.  Specifying this
+option is equivalent to specifying all the individual
+<samp>-f*-prefix-map</samp> options.  This can be used to make reproducible
+builds that are location independent.  See also
+<samp>-fmacro-prefix-map</samp> and <samp>-fdebug-prefix-map</samp>.
+</p>
+</dd>
+<dt><code>-fplugin=<var>name</var>.so</code></dt>
+<dd><a name="index-fplugin"></a>
+<p>Load the plugin code in file <var>name</var>.so, assumed to be a
+shared object to be dlopen’d by the compiler.  The base name of
+the shared object file is used to identify the plugin for the
+purposes of argument parsing (See
+<samp>-fplugin-arg-<var>name</var>-<var>key</var>=<var>value</var></samp> below).
+Each plugin should define the callback functions specified in the
+Plugins API.
+</p>
+</dd>
+<dt><code>-fplugin-arg-<var>name</var>-<var>key</var>=<var>value</var></code></dt>
+<dd><a name="index-fplugin-arg"></a>
+<p>Define an argument called <var>key</var> with a value of <var>value</var>
+for the plugin called <var>name</var>.
+</p>
+</dd>
+<dt><code>-fdump-ada-spec<span class="roman">[</span>-slim<span class="roman">]</span></code></dt>
+<dd><a name="index-fdump-ada-spec"></a>
+<p>For C and C++ source and include files, generate corresponding Ada specs.
+See <a href="http://gcc.gnu.org/onlinedocs/gnat_ugn/Generating-Ada-Bindings-for-C-and-C_002b_002b-headers.html#Generating-Ada-Bindings-for-C-and-C_002b_002b-headers">Generating Ada Bindings for C and C++ headers</a> in <cite>GNAT User’s Guide</cite>, which provides detailed documentation on this feature.
+</p>
+</dd>
+<dt><code>-fada-spec-parent=<var>unit</var></code></dt>
+<dd><a name="index-fada-spec-parent"></a>
+<p>In conjunction with <samp>-fdump-ada-spec<span class="roman">[</span>-slim<span class="roman">]</span></samp> above, generate
+Ada specs as child units of parent <var>unit</var>.
+</p>
+</dd>
+<dt><code>-fdump-go-spec=<var>file</var></code></dt>
+<dd><a name="index-fdump-go-spec"></a>
+<p>For input files in any language, generate corresponding Go
+declarations in <var>file</var>.  This generates Go <code>const</code>,
+<code>type</code>, <code>var</code>, and <code>func</code> declarations which may be a
+useful way to start writing a Go interface to code written in some
+other language.
+</p>
+
+</dd>
+<dt><code>@<var>file</var></code></dt>
+<dd><p>Read command-line options from <var>file</var>.  The options read are
+inserted in place of the original @<var>file</var> option.  If <var>file</var>
+does not exist, or cannot be read, then the option will be treated
+literally, and not removed.  
+</p>
+<p>Options in <var>file</var> are separated by whitespace.  A whitespace
+character may be included in an option by surrounding the entire
+option in either single or double quotes.  Any character (including a
+backslash) may be included by prefixing the character to be included
+with a backslash.  The <var>file</var> may itself contain additional
+@<var>file</var> options; any such options will be processed recursively.
+</p></dd>
+</dl>
+
+<hr>
+<div class="header">
+<p>
+Next: <a href="https://gcc.gnu.org/onlinedocs/gcc/Invoking-G_002b_002b.html#Invoking-G_002b_002b" accesskey="n" rel="next">Invoking G++</a>, Previous: <a href="https://gcc.gnu.org/onlinedocs/gcc/Option-Summary.html#Option-Summary" accesskey="p" rel="prev">Option Summary</a>, Up: <a href="https://gcc.gnu.org/onlinedocs/gcc/Invoking-GCC.html#Invoking-GCC" accesskey="u" rel="up">Invoking GCC</a> &nbsp; [<a href="https://gcc.gnu.org/onlinedocs/gcc/index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="https://gcc.gnu.org/onlinedocs/gcc/Option-Index.html#Option-Index" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+
+
+</body></html>

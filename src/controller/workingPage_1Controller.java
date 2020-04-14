@@ -7,8 +7,13 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.ColumnConstraints;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.RowConstraints;
 import javafx.scene.paint.Color;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.Text;
@@ -16,6 +21,8 @@ import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
 
 import javafx.scene.text.Font;
+import util.GCCDocParser;
+import util.SOEN6751_OptionsModel;
 
 import java.lang.reflect.Array;
 import java.net.URL;
@@ -52,6 +59,12 @@ public class workingPage_1Controller implements Initializable {
     private TextFlow textField;
 
     @FXML
+    private GridPane grid;
+
+    @FXML
+    private ScrollPane scrollPane;
+
+    @FXML
     private void closeWindow() {
         Stage stage = (Stage) closeButton.getScene().getWindow();
         stage.close();
@@ -80,8 +93,23 @@ public class workingPage_1Controller implements Initializable {
                 }
             }
         });
+        scrollPane.setFitToWidth(true);
 
-        textField.setStyle("-fx-background-color:lightskyblue");
+        grid.getChildren().removeAll();
+        grid.setGridLinesVisible(true);
+        grid.getColumnConstraints().removeAll();
+        grid.setAlignment(Pos.CENTER);
+        grid.setHgap(10);
+        grid.setVgap(10);
+        /*ColumnConstraints col1 = new ColumnConstraints();
+        col1.setPercentWidth(33);
+        ColumnConstraints col2 = new ColumnConstraints();
+        col2.setPercentWidth(33);
+        ColumnConstraints col3 = new ColumnConstraints();
+        col3.setPercentWidth(33);
+        grid.getColumnConstraints().addAll(col1,col2,col3);*/
+
+
 
     }
 
@@ -95,16 +123,24 @@ public class workingPage_1Controller implements Initializable {
     }
 
     public void clickCompilerOptions(ActionEvent actionEvent) {
+        //3 buttons each row
+        int columns = 3;
 
-        ArrayList<Text> textList = new ArrayList<>();
-        Text text1 = new Text("Stupid");
-        text1.setFill(Color.RED);
-        text1.setFont(Font.font("Helvetica",FontPosture.ITALIC,40));
-        textField.getChildren().add(text1);
-        processBuilder.command("");
+        int num_btn = SOEN6751_OptionsModel.compiler.length;
+        int index = 0;
+        int row = 0;
+        while(index < num_btn) {
+            for (int i = 0; i < columns; i++) {
+                Button b = new Button(SOEN6751_OptionsModel.compiler[index]);
+                b.setAlignment(Pos.CENTER);
+                b.setMinWidth(224);
+                b.setAccessibleText(SOEN6751_OptionsModel.compiler[index]);
+                grid.add(b, i, row);
+            }
+            index++;
+            if(index%3==0)row++;
+        }
 
-
-        textField.setVisible(true);
     }
 
     public void clickDebuggingOptions(ActionEvent actionEvent) {
