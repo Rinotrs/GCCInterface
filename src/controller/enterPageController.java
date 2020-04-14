@@ -42,6 +42,8 @@ public class enterPageController implements Initializable {
         stage.close();
     }
 
+
+
     @FXML
     void clickSure(ActionEvent event) {
         Parent root;
