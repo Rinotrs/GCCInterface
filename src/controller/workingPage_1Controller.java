@@ -152,7 +152,7 @@ public class workingPage_1Controller implements Initializable {
                 b.setMinHeight(40);
                 b.setAccessibleText(options[index]);
 
-                b.setTooltip(new Tooltip(GCCDocParser.getParameterDescription(SOEN6751_OptionsModel.compiler_documentation,op)));
+                b.setTooltip(new Tooltip(breaklines(GCCDocParser.getParameterDescription(SOEN6751_OptionsModel.compiler_documentation,op))));
                 b.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent event) {
@@ -169,6 +169,8 @@ public class workingPage_1Controller implements Initializable {
         }
 
     }
+
+
 
     public void clickDebuggingOptions(ActionEvent actionEvent) {
         grid.getChildren().clear();
@@ -190,7 +192,7 @@ public class workingPage_1Controller implements Initializable {
                 b.setMinWidth(224);
                 b.setMinHeight(40);
                 b.setAccessibleText(options[index]);
-                b.setTooltip(new Tooltip(GCCDocParser.getParameterDescription(SOEN6751_OptionsModel.debugging_documentation,op)));
+                b.setTooltip(new Tooltip(breaklines(GCCDocParser.getParameterDescription(SOEN6751_OptionsModel.debugging_documentation,op))));
                 b.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent event) {
@@ -226,7 +228,7 @@ public class workingPage_1Controller implements Initializable {
                 b.setMinWidth(224);
                 b.setMinHeight(40);
                 b.setAccessibleText(options[index]);
-                b.setTooltip(new Tooltip(GCCDocParser.getParameterDescription(SOEN6751_OptionsModel.linking_documentation,op)));
+                b.setTooltip(new Tooltip(breaklines(GCCDocParser.getParameterDescription(SOEN6751_OptionsModel.linking_documentation,op))));
                 b.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent event) {
@@ -262,7 +264,7 @@ public class workingPage_1Controller implements Initializable {
                 b.setMinWidth(224);
                 b.setMinHeight(40);
                 b.setAccessibleText(options[index]);
-                b.setTooltip(new Tooltip(GCCDocParser.getParameterDescription(SOEN6751_OptionsModel.execute_documentation,op)));
+                b.setTooltip(new Tooltip(breaklines(GCCDocParser.getParameterDescription(SOEN6751_OptionsModel.execute_documentation,op))));
                 b.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent event) {
@@ -297,7 +299,7 @@ public class workingPage_1Controller implements Initializable {
                 b.setMinWidth(224);
                 b.setMinHeight(40);
                 b.setAccessibleText(options[index]);
-                b.setTooltip(new Tooltip(GCCDocParser.getParameterDescription(SOEN6751_OptionsModel.generation_documentation,op)));
+                b.setTooltip(new Tooltip(breaklines(GCCDocParser.getParameterDescription(SOEN6751_OptionsModel.generation_documentation,op))));
                 b.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent event) {
@@ -332,7 +334,7 @@ public class workingPage_1Controller implements Initializable {
                 b.setMinWidth(224);
                 b.setMinHeight(40);
                 b.setAccessibleText(options[index]);
-                b.setTooltip(new Tooltip(GCCDocParser.getParameterDescription(SOEN6751_OptionsModel.developer_documentation,op)));
+                b.setTooltip(new Tooltip(breaklines(GCCDocParser.getParameterDescription(SOEN6751_OptionsModel.developer_documentation,op))));
                 b.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent event) {
@@ -368,7 +370,7 @@ public class workingPage_1Controller implements Initializable {
                 b.setMinWidth(224);
                 b.setMinHeight(40);
                 b.setAccessibleText(options[index]);
-                b.setTooltip(new Tooltip(GCCDocParser.getParameterDescription(SOEN6751_OptionsModel.optimization_documentation,op)));
+                b.setTooltip(new Tooltip(breaklines(GCCDocParser.getParameterDescription(SOEN6751_OptionsModel.optimization_documentation,op))));
                 b.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent event) {
@@ -382,6 +384,22 @@ public class workingPage_1Controller implements Initializable {
 
             if(index%3==0)row++;
         }
+    }
+
+    /**
+     * Break toolTip string into multiple lines (each with 10 words max)
+     * @param toolTip
+     * @return
+     */
+    public String breaklines (String toolTip){
+        String [] stringarray = toolTip.split("\\s+");
+        String finished="";
+        int i=0;
+        while (i<stringarray.length){
+            finished+= stringarray[i]+((i%10==0 && i!=0)?"\n":" ");
+            i++;
+        }
+        return finished;
     }
 
     public void initializeTextArea(){

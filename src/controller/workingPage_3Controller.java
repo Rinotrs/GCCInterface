@@ -113,8 +113,8 @@ public class workingPage_3Controller extends workingPage_2Controller implements 
     }
 
     private void loadData() {
-        unUsedList.addAll("Code Generation", "Developer Options", "Code Optimization");
-        series.getItems().addAll(unUsedList);
+        /*unUsedList.addAll("Code Generation", "Developer Options", "Code Optimization");
+        series.getItems().addAll(unUsedList)*/;
         allButton.add(codeGeneration);
         allButton.add(developerOptions);
         allButton.add(codeOptimization);
