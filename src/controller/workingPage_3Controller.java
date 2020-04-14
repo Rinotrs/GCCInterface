@@ -31,7 +31,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class workingPage_3Controller implements Initializable{
+public class workingPage_3Controller extends workingPage_2Controller implements Initializable{
 
     @FXML
     Button compilerOptions;

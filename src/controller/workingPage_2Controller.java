@@ -18,7 +18,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class workingPage_2Controller implements Initializable {
+public class workingPage_2Controller extends workingPage_1Controller implements Initializable {
 
     @FXML
     Button compilerOptions;
@@ -72,26 +72,7 @@ public class workingPage_2Controller implements Initializable {
 
     }
 
-    public void clickCompilerOptions(ActionEvent actionEvent) {
-    }
-
-    public void clickDebuggingOptions(ActionEvent actionEvent) {
-    }
-
-    public void clickLinkingOptions(ActionEvent actionEvent) {
-    }
-
-    public void clickExecuteOptions(ActionEvent actionEvent) {
-    }
-
-    public void clickCodeGeneration(ActionEvent actionEvent) {
-    }
-
-    public void clickDeveloperOptions(ActionEvent actionEvent) {
-    }
-
-    public void clickCodeOptimization(ActionEvent actionEvent) {
-    }
+    
 
 
 }

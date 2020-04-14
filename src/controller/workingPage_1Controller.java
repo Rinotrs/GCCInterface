@@ -130,6 +130,7 @@ public class workingPage_1Controller implements Initializable {
             final String op = options[index];
 
             for (int i = 0; i < columns; i++) {
+                if(index == num_btn) break;
                 Button b = new Button(SOEN6751_OptionsModel.compiler[index]);
                 b.setAlignment(Pos.CENTER);
                 b.setMinWidth(224);
@@ -144,8 +145,9 @@ public class workingPage_1Controller implements Initializable {
                     }
                 });
                 grid.add(b, i, row);
+                index++;
+
             }
-            index++;
             if(index%3==0)row++;
         }
 
@@ -165,6 +167,7 @@ public class workingPage_1Controller implements Initializable {
             final String op = options[index];
 
             for (int i = 0; i < columns; i++) {
+                if(index == num_btn) break;
                 Button b = new Button(SOEN6751_OptionsModel.debugging[index]);
                 b.setAlignment(Pos.CENTER);
                 b.setMinWidth(224);
@@ -179,8 +182,9 @@ public class workingPage_1Controller implements Initializable {
                     }
                 });
                 grid.add(b, i, row);
+                index++;
             }
-            index++;
+
             if(index%3==0)row++;
         }
     }
@@ -199,6 +203,7 @@ public class workingPage_1Controller implements Initializable {
             final String op = options[index];
 
             for (int i = 0; i < columns; i++) {
+                if(index == num_btn) break;
                 Button b = new Button(SOEN6751_OptionsModel.linking[index]);
                 b.setAlignment(Pos.CENTER);
                 b.setMinWidth(224);
@@ -213,8 +218,9 @@ public class workingPage_1Controller implements Initializable {
                     }
                 });
                 grid.add(b, i, row);
+                index++;
             }
-            index++;
+
             if(index%3==0)row++;
         }
     }
@@ -233,6 +239,7 @@ public class workingPage_1Controller implements Initializable {
             final String op = options[index];
 
             for (int i = 0; i < columns; i++) {
+                if(index == num_btn) break;
                 Button b = new Button(SOEN6751_OptionsModel.execute[index]);
                 b.setAlignment(Pos.CENTER);
                 b.setMinWidth(224);
@@ -247,8 +254,8 @@ public class workingPage_1Controller implements Initializable {
                     }
                 });
                 grid.add(b, i, row);
+                index++;
             }
-            index++;
             if(index%3==0)row++;
         }
     }
@@ -267,6 +274,7 @@ public class workingPage_1Controller implements Initializable {
             final String op = options[index];
 
             for (int i = 0; i < columns; i++) {
+                if(index== num_btn) break;
                 Button b = new Button(SOEN6751_OptionsModel.generation[index]);
                 b.setAlignment(Pos.CENTER);
                 b.setMinWidth(224);
@@ -280,9 +288,9 @@ public class workingPage_1Controller implements Initializable {
                         textArea.setText(currText);
                     }
                 });
+                index++;
                 grid.add(b, i, row);
             }
-            index++;
             if(index%3==0)row++;
         }
     }
@@ -301,6 +309,7 @@ public class workingPage_1Controller implements Initializable {
             final String op = options[index];
 
             for (int i = 0; i < columns; i++) {
+                if(index == num_btn) break;
                 Button b = new Button(SOEN6751_OptionsModel.developer[index]);
                 b.setAlignment(Pos.CENTER);
                 b.setMinWidth(224);
@@ -315,8 +324,9 @@ public class workingPage_1Controller implements Initializable {
                     }
                 });
                 grid.add(b, i, row);
+                index++;
             }
-            index++;
+
             if(index%3==0)row++;
         }
     }
@@ -335,6 +345,7 @@ public class workingPage_1Controller implements Initializable {
             final String op = options[index];
 
             for (int i = 0; i < columns; i++) {
+                if(index == num_btn) break;
                 Button b = new Button(SOEN6751_OptionsModel.optimization[index]);
                 b.setAlignment(Pos.CENTER);
                 b.setMinWidth(224);
@@ -349,8 +360,9 @@ public class workingPage_1Controller implements Initializable {
                     }
                 });
                 grid.add(b, i, row);
+                index++;
             }
-            index++;
+
             if(index%3==0)row++;
         }
     }
