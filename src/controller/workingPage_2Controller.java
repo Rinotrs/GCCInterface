@@ -37,20 +37,6 @@ public class workingPage_2Controller implements Initializable {
     @FXML
     private ChoiceBox<String> series;
 
-    @FXML
-    private Button closeButton;
-
-    @FXML
-    private void closeButtonAction() {
-        Stage stage = (Stage) closeButton.getScene().getWindow();
-        stage.close();
-    }
-
-    @FXML
-    private void closeWindow() {
-        Stage stage = (Stage) series.getScene().getWindow();
-        stage.close();
-    }
 
     ObservableList<String> unUsedList = FXCollections.observableArrayList();
     ObservableList UsedList = FXCollections.observableArrayList();
@@ -106,4 +92,6 @@ public class workingPage_2Controller implements Initializable {
 
     public void clickCodeOptimization(ActionEvent actionEvent) {
     }
+
+
 }
