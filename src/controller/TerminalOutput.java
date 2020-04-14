@@ -17,6 +17,16 @@ import java.io.PrintStream;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ *
+ * This is the page for output terminal
+ *
+ * @author Runsen Tian
+ * @version v1.0.0
+ */
+
+
+
 public class TerminalOutput implements Initializable {
 
     @FXML
@@ -27,17 +37,22 @@ public class TerminalOutput implements Initializable {
 
     public static String currentCommand;
 
+    /**
+     *<p>
+     * This method to set current command.
+     *</p>
+     * @param command String
+     */
     public static void setCurrentCommand(String command){
         currentCommand = command;
     }
 
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        backgroundPane.styleProperty().set("-fx-background-color: white;");
-
-        outputArea.setBackground(new Background(new BackgroundFill(Color.BLACK,CornerRadii.EMPTY, Insets.EMPTY)));
-        outputArea.setStyle("-fx-text-fill:black;-fx-font-size:18px;");
-        outputArea.setPrefSize(Double.MAX_VALUE,Double.MAX_VALUE);
+        backgroundPane.styleProperty().set("-fx-background-color: black;");
+        outputArea.setStyle("-fx-text-fill:green;-fx-font-size:16px;");
+        outputArea.setMinSize(300,300);
 
         TerminalOutputStream.setTerminalTo(outputArea);
 
