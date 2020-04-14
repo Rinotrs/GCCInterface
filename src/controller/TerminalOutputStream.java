@@ -42,5 +42,13 @@ public class TerminalOutputStream extends OutputStream {
         TerminalOutputStream out = new TerminalOutputStream(textArea);
         System.setOut(new PrintStream(out));
     }
+    
+
+    public static void testSomeOutput() throws IOException, InterruptedException {
+        SOEN6751_GccProcLib.run("echo 'testing one command'"); //windows
+        SOEN6751_GccProcLib.run("cat 'testing one command'"); //unix
+        SOEN6751_GccProcLib.run("cd c:\\ && dir && echo 'testing 3 commands at once' "); //windows
+        SOEN6751_GccProcLib.run("cd \\ ; ls -lah ; cat 'testing 3 commands at once' "); //unix
+    }
 
 }

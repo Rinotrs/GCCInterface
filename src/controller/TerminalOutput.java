@@ -40,6 +40,14 @@ public class TerminalOutput implements Initializable {
         outputArea.setPrefSize(Double.MAX_VALUE,Double.MAX_VALUE);
 
         TerminalOutputStream.setTerminalTo(outputArea);
+
+        try {
+            SOEN6751_GccProcLib.run(currentCommand);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
 
