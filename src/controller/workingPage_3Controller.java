@@ -7,9 +7,12 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
@@ -25,13 +28,14 @@ import util.GCCDocParser;
 import util.SOEN6751_OptionsModel;
 
 import java.awt.*;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class workingPage_3Controller extends workingPage_2Controller implements Initializable{
+public class workingPage_3Controller implements Initializable{
 
     @FXML
     Button compilerOptions;
@@ -65,15 +69,11 @@ public class workingPage_3Controller extends workingPage_2Controller implements 
     @FXML
     private Button executeButton;
 
-    @FXML
-    private void closeWindow() {
-        Stage stage = (Stage) closeButton.getScene().getWindow();
-        stage.close();
-    }
-
     private String currText;
 
     private boolean executed = false;
+
+
 
     ObservableList<String> unUsedList = FXCollections.observableArrayList();
     ObservableList UsedList = FXCollections.observableArrayList();
@@ -129,32 +129,38 @@ public class workingPage_3Controller extends workingPage_2Controller implements 
         int num_btn = SOEN6751_OptionsModel.compiler.length;
         int index = 0;
         int row = 0;
-        String [] options = SOEN6751_OptionsModel.compiler;
+        String[] options = SOEN6751_OptionsModel.compiler;
 
-        while(index < num_btn) {
+        while (index < num_btn) {
             final String op = options[index];
 
             for (int i = 0; i < columns; i++) {
+                if(index == num_btn) break;
                 Button b = new Button(SOEN6751_OptionsModel.compiler[index]);
                 b.setAlignment(Pos.CENTER);
                 b.setMinWidth(224);
                 b.setMinHeight(40);
                 b.setAccessibleText(options[index]);
-                b.setTooltip(new Tooltip(GCCDocParser.getParameterDescription(SOEN6751_OptionsModel.compiler_documentation,op)));
+
+                b.setTooltip(new Tooltip(breaklines(GCCDocParser.getParameterDescription(SOEN6751_OptionsModel.compiler_documentation,op))));
                 b.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent event) {
-                        currText+=" "+ b.getAccessibleText();
+                        currText+=" "+ removeParentheses(b.getAccessibleText());
                         textArea.setText(currText);
                     }
                 });
                 grid.add(b, i, row);
+                index++;
+
             }
             index++;
-            if(index%3==0)row++;
+            if (index % 3 == 0) row++;
         }
 
     }
+
+
 
     public void clickDebuggingOptions(ActionEvent actionEvent) {
         grid.getChildren().clear();
@@ -170,22 +176,24 @@ public class workingPage_3Controller extends workingPage_2Controller implements 
             final String op = options[index];
 
             for (int i = 0; i < columns; i++) {
+                if(index == num_btn) break;
                 Button b = new Button(SOEN6751_OptionsModel.debugging[index]);
                 b.setAlignment(Pos.CENTER);
                 b.setMinWidth(224);
                 b.setMinHeight(40);
                 b.setAccessibleText(options[index]);
-                b.setTooltip(new Tooltip(GCCDocParser.getParameterDescription(SOEN6751_OptionsModel.debugging_documentation,op)));
+                b.setTooltip(new Tooltip(breaklines(GCCDocParser.getParameterDescription(SOEN6751_OptionsModel.debugging_documentation,op))));
                 b.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent event) {
-                        currText+=" "+ b.getAccessibleText();
+                        currText+=" "+ removeParentheses(b.getAccessibleText());
                         textArea.setText(currText);
                     }
                 });
                 grid.add(b, i, row);
+                index++;
             }
-            index++;
+
             if(index%3==0)row++;
         }
     }
@@ -204,22 +212,24 @@ public class workingPage_3Controller extends workingPage_2Controller implements 
             final String op = options[index];
 
             for (int i = 0; i < columns; i++) {
+                if(index == num_btn) break;
                 Button b = new Button(SOEN6751_OptionsModel.linking[index]);
                 b.setAlignment(Pos.CENTER);
                 b.setMinWidth(224);
                 b.setMinHeight(40);
                 b.setAccessibleText(options[index]);
-                b.setTooltip(new Tooltip(GCCDocParser.getParameterDescription(SOEN6751_OptionsModel.linking_documentation,op)));
+                b.setTooltip(new Tooltip(breaklines(GCCDocParser.getParameterDescription(SOEN6751_OptionsModel.linking_documentation,op))));
                 b.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent event) {
-                        currText+=" "+ b.getAccessibleText();
+                        currText+=" "+ removeParentheses(b.getAccessibleText());
                         textArea.setText(currText);
                     }
                 });
                 grid.add(b, i, row);
+                index++;
             }
-            index++;
+
             if(index%3==0)row++;
         }
     }
@@ -238,34 +248,148 @@ public class workingPage_3Controller extends workingPage_2Controller implements 
             final String op = options[index];
 
             for (int i = 0; i < columns; i++) {
+                if(index == num_btn) break;
                 Button b = new Button(SOEN6751_OptionsModel.execute[index]);
                 b.setAlignment(Pos.CENTER);
                 b.setMinWidth(224);
                 b.setMinHeight(40);
                 b.setAccessibleText(options[index]);
-                b.setTooltip(new Tooltip(GCCDocParser.getParameterDescription(SOEN6751_OptionsModel.execute_documentation,op)));
+                b.setTooltip(new Tooltip(breaklines(GCCDocParser.getParameterDescription(SOEN6751_OptionsModel.execute_documentation,op))));
                 b.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent event) {
-                        currText+=" "+ b.getAccessibleText();
+                        currText+=" "+ removeParentheses(b.getAccessibleText());
                         textArea.setText(currText);
                     }
                 });
                 grid.add(b, i, row);
+                index++;
             }
-            index++;
             if(index%3==0)row++;
         }
     }
 
     public void clickCodeGeneration(ActionEvent actionEvent) {
+        grid.getChildren().clear();
+        //3 buttons each row
+        int columns = 3;
 
+        int num_btn = SOEN6751_OptionsModel.generation.length;
+        int index = 0;
+        int row = 0;
+        String [] options = SOEN6751_OptionsModel.generation;
+
+        while(index < num_btn) {
+            final String op = options[index];
+
+            for (int i = 0; i < columns; i++) {
+                if(index== num_btn) break;
+                Button b = new Button(SOEN6751_OptionsModel.generation[index]);
+                b.setAlignment(Pos.CENTER);
+                b.setMinWidth(224);
+                b.setMinHeight(40);
+                b.setAccessibleText(options[index]);
+                b.setTooltip(new Tooltip(breaklines(GCCDocParser.getParameterDescription(SOEN6751_OptionsModel.generation_documentation,op))));
+                b.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent event) {
+                        currText+=" "+ removeParentheses(b.getAccessibleText());
+                        textArea.setText(currText);
+                    }
+                });
+                index++;
+                grid.add(b, i, row);
+            }
+            if(index%3==0)row++;
+        }
     }
 
     public void clickDeveloperOptions(ActionEvent actionEvent) {
+        grid.getChildren().clear();
+        //3 buttons each row
+        int columns = 3;
+
+        int num_btn = SOEN6751_OptionsModel.developer.length;
+        int index = 0;
+        int row = 0;
+        String [] options = SOEN6751_OptionsModel.developer;
+
+        while(index < num_btn) {
+            final String op = options[index];
+
+            for (int i = 0; i < columns; i++) {
+                if(index == num_btn) break;
+                Button b = new Button(SOEN6751_OptionsModel.developer[index]);
+                b.setAlignment(Pos.CENTER);
+                b.setMinWidth(224);
+                b.setMinHeight(40);
+                b.setAccessibleText(options[index]);
+                b.setTooltip(new Tooltip(breaklines(GCCDocParser.getParameterDescription(SOEN6751_OptionsModel.developer_documentation,op))));
+                b.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent event) {
+                        currText+=" "+ removeParentheses(b.getAccessibleText());
+                        textArea.setText(currText);
+                    }
+                });
+                grid.add(b, i, row);
+                index++;
+            }
+
+            if(index%3==0)row++;
+        }
     }
 
     public void clickCodeOptimization(ActionEvent actionEvent) {
+        grid.getChildren().clear();
+        //3 buttons each row
+        int columns = 3;
+
+        int num_btn = SOEN6751_OptionsModel.optimization.length;
+        int index = 0;
+        int row = 0;
+        String [] options = SOEN6751_OptionsModel.optimization;
+
+        while(index < num_btn) {
+            final String op = options[index];
+
+            for (int i = 0; i < columns; i++) {
+                if(index == num_btn) break;
+                Button b = new Button(SOEN6751_OptionsModel.optimization[index]);
+                b.setAlignment(Pos.CENTER);
+                b.setMinWidth(224);
+                b.setMinHeight(40);
+                b.setAccessibleText(options[index]);
+                b.setTooltip(new Tooltip(breaklines(GCCDocParser.getParameterDescription(SOEN6751_OptionsModel.optimization_documentation,op))));
+                b.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent event) {
+                        currText+=" "+ removeParentheses(b.getAccessibleText());
+                        textArea.setText(currText);
+                    }
+                });
+                grid.add(b, i, row);
+                index++;
+            }
+
+            if(index%3==0)row++;
+        }
+    }
+
+    /**
+     * Break toolTip string into multiple lines (each with 10 words max)
+     * @param toolTip
+     * @return
+     */
+    public String breaklines (String toolTip){
+        String [] stringarray = toolTip.split("\\s+");
+        String finished="";
+        int i=0;
+        while (i<stringarray.length){
+            finished+= stringarray[i]+((i%10==0 && i!=0)?"\n":" ");
+            i++;
+        }
+        return finished;
     }
 
     public void initializeTextArea(){
@@ -273,10 +397,26 @@ public class workingPage_3Controller extends workingPage_2Controller implements 
         executed=false;
     }
 
-    @FXML
-    void executeCommand(ActionEvent event) {
-
-        executed = true;
-        initializeTextArea();
+    public String removeParentheses(String comm){
+        int index =0;
+        while(index<comm.length()&& comm.charAt(index)!='('){
+            index++;
+        }
+        return comm.substring(0,index);
     }
+
+    @FXML
+    void runClick(ActionEvent event) throws IOException {
+        TerminalOutput.setCurrentCommand(currText);
+
+        Parent root = FXMLLoader.load(getClass().getResource("/view/terminalOutput.fxml"));
+        Stage stage = new Stage();
+        stage.setTitle("Output Terminal");
+        stage.setScene(new Scene(root, 1000, 600));
+        stage.show();
+
+        currText = "gcc";
+    }
+
+
 }

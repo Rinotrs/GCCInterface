@@ -7,11 +7,16 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -23,11 +28,16 @@ import javafx.stage.Stage;
 import javafx.scene.text.Font;
 import javafx.stage.StageStyle;
 import util.GCCDocParser;
+import util.SOEN6751_GccProcLib;
 import util.SOEN6751_OptionsModel;
+import util.SOEN6751_TerminalOutput;
 
+import java.awt.*;
+import java.io.IOException;
 import java.lang.reflect.Array;
 import java.net.URL;
 import java.util.*;
+import java.util.List;
 
 public class workingPage_1Controller implements Initializable {
 
@@ -157,7 +167,7 @@ public class workingPage_1Controller implements Initializable {
                 b.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent event) {
-                        currText+=" "+ b.getAccessibleText();
+                        currText+=" "+ removeParentheses(b.getAccessibleText());
                         textArea.setText(currText);
                     }
                 });
@@ -197,7 +207,7 @@ public class workingPage_1Controller implements Initializable {
                 b.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent event) {
-                        currText+=" "+ b.getAccessibleText();
+                        currText+=" "+ removeParentheses(b.getAccessibleText());
                         textArea.setText(currText);
                     }
                 });
@@ -233,7 +243,7 @@ public class workingPage_1Controller implements Initializable {
                 b.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent event) {
-                        currText+=" "+ b.getAccessibleText();
+                        currText+=" "+ removeParentheses(b.getAccessibleText());
                         textArea.setText(currText);
                     }
                 });
@@ -269,7 +279,7 @@ public class workingPage_1Controller implements Initializable {
                 b.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent event) {
-                        currText+=" "+ b.getAccessibleText();
+                        currText+=" "+ removeParentheses(b.getAccessibleText());
                         textArea.setText(currText);
                     }
                 });
@@ -304,7 +314,7 @@ public class workingPage_1Controller implements Initializable {
                 b.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent event) {
-                        currText+=" "+ b.getAccessibleText();
+                        currText+=" "+ removeParentheses(b.getAccessibleText());
                         textArea.setText(currText);
                     }
                 });
@@ -339,7 +349,7 @@ public class workingPage_1Controller implements Initializable {
                 b.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent event) {
-                        currText+=" "+ b.getAccessibleText();
+                        currText+=" "+ removeParentheses(b.getAccessibleText());
                         textArea.setText(currText);
                     }
                 });
@@ -375,7 +385,7 @@ public class workingPage_1Controller implements Initializable {
                 b.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent event) {
-                        currText+=" "+ b.getAccessibleText();
+                        currText+=" "+ removeParentheses(b.getAccessibleText());
                         textArea.setText(currText);
                     }
                 });
@@ -408,10 +418,24 @@ public class workingPage_1Controller implements Initializable {
         executed=false;
     }
 
-    @FXML
-    void executeCommand(ActionEvent event) {
+    public String removeParentheses(String comm){
+        int index =0;
+        while(index<comm.length()&& comm.charAt(index)!='('){
+            index++;
+        }
+        return comm.substring(0,index);
+    }
 
-        executed = true;
-        initializeTextArea();
+    @FXML
+    void runClick(ActionEvent event) throws IOException {
+        TerminalOutput.setCurrentCommand(currText);
+
+        Parent root = FXMLLoader.load(getClass().getResource("/view/terminalOutput.fxml"));
+        Stage stage = new Stage();
+        stage.setTitle("Output Terminal");
+        stage.setScene(new Scene(root, 1000, 600));
+        stage.show();
+
+        currText = "gcc";
     }
 }

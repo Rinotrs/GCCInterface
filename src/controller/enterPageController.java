@@ -14,8 +14,17 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import util.SMARTGCC_LegacySwingVersion;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+/**
+ *
+ * This is the implementation of the entering page controller. Users can enter different working pages by this page
+ *
+ * @author Runsen Tian
+ * @version v1.0.0
+ */
 
 public class enterPageController implements Initializable {
     @FXML
@@ -41,6 +50,13 @@ public class enterPageController implements Initializable {
         Stage stage = (Stage) typical.getScene().getWindow();
         stage.close();
     }
+
+    /**
+     *<p>
+     * This method is responsible for entering different working pages.
+     *</p>
+     * @param event Action Event
+     */
 
     @FXML
     void clickSure(ActionEvent event) {

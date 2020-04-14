@@ -7,9 +7,22 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+/**
+ * This is the main class which is the starting point of the GCC Interface.
+ *
+ * @author Runsen Tian
+ * @version 1.0.0
+ */
 
 public class Main extends Application {
 
+    /**
+     *
+     * This method loads the main screen of the GCC Interface.
+     *
+     * @param primaryStage the first screen user is exposed to.
+     * @throws Exception all the exceptions that didnt't handle within the functions
+     */
 
     @Override
     public void start(Stage primaryStage) throws Exception {
