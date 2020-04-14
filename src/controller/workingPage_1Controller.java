@@ -166,7 +166,7 @@ public class workingPage_1Controller implements Initializable {
                 b.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent event) {
-                        currText+=" "+ b.getAccessibleText();
+                        currText+=" "+ removeParentheses(b.getAccessibleText());
                         textArea.setText(currText);
                     }
                 });
@@ -206,7 +206,7 @@ public class workingPage_1Controller implements Initializable {
                 b.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent event) {
-                        currText+=" "+ b.getAccessibleText();
+                        currText+=" "+ removeParentheses(b.getAccessibleText());
                         textArea.setText(currText);
                     }
                 });
@@ -242,7 +242,7 @@ public class workingPage_1Controller implements Initializable {
                 b.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent event) {
-                        currText+=" "+ b.getAccessibleText();
+                        currText+=" "+ removeParentheses(b.getAccessibleText());
                         textArea.setText(currText);
                     }
                 });
@@ -278,7 +278,7 @@ public class workingPage_1Controller implements Initializable {
                 b.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent event) {
-                        currText+=" "+ b.getAccessibleText();
+                        currText+=" "+ removeParentheses(b.getAccessibleText());
                         textArea.setText(currText);
                     }
                 });
@@ -313,7 +313,7 @@ public class workingPage_1Controller implements Initializable {
                 b.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent event) {
-                        currText+=" "+ b.getAccessibleText();
+                        currText+=" "+ removeParentheses(b.getAccessibleText());
                         textArea.setText(currText);
                     }
                 });
@@ -348,7 +348,7 @@ public class workingPage_1Controller implements Initializable {
                 b.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent event) {
-                        currText+=" "+ b.getAccessibleText();
+                        currText+=" "+ removeParentheses(b.getAccessibleText());
                         textArea.setText(currText);
                     }
                 });
@@ -384,7 +384,7 @@ public class workingPage_1Controller implements Initializable {
                 b.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent event) {
-                        currText+=" "+ b.getAccessibleText();
+                        currText+=" "+ removeParentheses(b.getAccessibleText());
                         textArea.setText(currText);
                     }
                 });
@@ -417,6 +417,14 @@ public class workingPage_1Controller implements Initializable {
         executed=false;
     }
 
+    public String removeParentheses(String comm){
+        int index =0;
+        while(index<comm.length()&& comm.charAt(index)!='('){
+            index++;
+        }
+        return comm.substring(0,index);
+    }
+
     @FXML
     void runClick(ActionEvent event) throws IOException {
         TerminalOutput.setCurrentCommand(currText);
@@ -426,5 +434,7 @@ public class workingPage_1Controller implements Initializable {
         stage.setTitle("Output Terminal");
         stage.setScene(new Scene(root, 1000, 600));
         stage.show();
+
+        currText = "gcc";
     }
 }
