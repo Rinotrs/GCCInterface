@@ -27,10 +27,7 @@ import util.SOEN6751_OptionsModel;
 
 import java.lang.reflect.Array;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class workingPage_1Controller implements Initializable {
 
@@ -49,13 +46,19 @@ public class workingPage_1Controller implements Initializable {
     Button developerOptions;
     @FXML
     Button codeOptimization;
+    ObservableList<String> unUsedList = FXCollections.observableArrayList();
+    ObservableList UsedList = FXCollections.observableArrayList();
+    List<Button> allButton = new ArrayList<Button>();
     @FXML
     private ChoiceBox<String> series;
+    @FXML
+    private Button closeButton;
+    @FXML
+    private TextFlow textField;
 
 
     @FXML
     private GridPane grid;
-
     @FXML
     private ScrollPane scrollPane;
 
@@ -70,29 +73,31 @@ public class workingPage_1Controller implements Initializable {
 
     private boolean executed = false;
 
-    ObservableList<String> unUsedList = FXCollections.observableArrayList();
-    ObservableList UsedList = FXCollections.observableArrayList();
-    List<Button> allButton = new ArrayList<Button>();
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         loadData();
-        series.getSelectionModel().selectedIndexProperty().addListener((observableValue, number, t1) -> {
-//                unUsedList.get(t1)
-            for (String s : unUsedList) {
-                if (unUsedList.get(t1.intValue()).equals(s)) {
-                    for (Button button : allButton) {
-                        if (button.getId().equals(s)) {
-                            button.setVisible(true);
-                            unUsedList.remove(s);
-                            series.getItems().clear();
-                            series.getItems().addAll(unUsedList);
-                            break;
+            series.getSelectionModel().selectedIndexProperty().addListener((observableValue, number, t1) -> {
+                int index = t1.intValue();
+                String strButton = unUsedList.get(index);
+                Iterator<String> iterator = unUsedList.iterator();
+                while(iterator.hasNext()){
+                    String s = iterator.next();
+                    if (s.equals(strButton)) {
+                        for (Button button : allButton) {
+                            if (button.getText().equals(s)) {
+                                button.setVisible(true);
+                                iterator.remove();
+                                break;
+                            }
                         }
                     }
+                    break;
                 }
-            }
-        });
+                series.getItems().clear();
+                series.getItems().addAll(unUsedList);
+            });
+
+
         scrollPane.setFitToWidth(true);
 
         grid.getChildren().clear();
@@ -101,19 +106,29 @@ public class workingPage_1Controller implements Initializable {
         grid.setAlignment(Pos.CENTER);
         grid.setHgap(10);
         grid.setVgap(20);
-        grid.setBackground(new Background(new BackgroundFill(Color.rgb(200,200,230),CornerRadii.EMPTY, Insets.EMPTY)));
+        /*ColumnConstraints col1 = new ColumnConstraints();
+        col1.setPercentWidth(33);
+        ColumnConstraints col2 = new ColumnConstraints();
+        col2.setPercentWidth(33);
+        ColumnConstraints col3 = new ColumnConstraints();
+        col3.setPercentWidth(33);
+        grid.getColumnConstraints().addAll(col1,col2,col3);*/
+        grid.setBackground(new Background(new BackgroundFill(Color.rgb(100,200,200),CornerRadii.EMPTY, Insets.EMPTY)));
 
         currText = "gcc";
         textArea.setText(currText);
     }
 
     private void loadData() {
-        unUsedList.addAll("Code Generation", "Developer Options", "Code Optimization");
+        unUsedList.addAll("Code Generation", "Code Optimization", "Developer Options");
         series.getItems().addAll(unUsedList);
+//        allButton.add(compilerOptions);
+//        allButton.add(debuggingOptions);
+//        allButton.add(linkingOptions);
+//        allButton.add(executeOptions);
         allButton.add(codeGeneration);
-        allButton.add(developerOptions);
         allButton.add(codeOptimization);
-
+        allButton.add(developerOptions);
     }
 
     public void clickCompilerOptions(ActionEvent actionEvent) {
@@ -124,9 +139,9 @@ public class workingPage_1Controller implements Initializable {
         int num_btn = SOEN6751_OptionsModel.compiler.length;
         int index = 0;
         int row = 0;
-        String [] options = SOEN6751_OptionsModel.compiler;
+        String[] options = SOEN6751_OptionsModel.compiler;
 
-        while(index < num_btn) {
+        while (index < num_btn) {
             final String op = options[index];
 
             for (int i = 0; i < columns; i++) {
@@ -136,6 +151,7 @@ public class workingPage_1Controller implements Initializable {
                 b.setMinWidth(224);
                 b.setMinHeight(40);
                 b.setAccessibleText(options[index]);
+
                 b.setTooltip(new Tooltip(GCCDocParser.getParameterDescription(SOEN6751_OptionsModel.compiler_documentation,op)));
                 b.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
                     @Override
@@ -148,7 +164,8 @@ public class workingPage_1Controller implements Initializable {
                 index++;
 
             }
-            if(index%3==0)row++;
+            index++;
+            if (index % 3 == 0) row++;
         }
 
     }

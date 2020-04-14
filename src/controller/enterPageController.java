@@ -44,6 +44,7 @@ public class enterPageController implements Initializable {
 
     @FXML
     void clickSure(ActionEvent event) {
+        Parent root;
         try {
             int userType = -1;
             if (novice.isSelected()) {
@@ -56,9 +57,8 @@ public class enterPageController implements Initializable {
                 //SMARTGCC_LegacySwingVersion.startSMARTGCC("expert");
                 userType = 3;
             }
-            //TODO：要做3 个页面 workingPage_1.fxml, workingPage_2.fxml, workingPage_3.fxml
-            // 1 Novice,2 Typical,3 Expert
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/workingPage_" + userType + ".fxml"));
+
+/*            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/workingPage_" + userType + ".fxml"));
             Parent root = (Parent) loader.load();
             Stage stage = new Stage();
             stage.initStyle(StageStyle.TRANSPARENT);
@@ -66,7 +66,13 @@ public class enterPageController implements Initializable {
             stage.setScene(new Scene(root));
             stage.show();
             ((Stage)novice.getScene().getWindow()).close();
-            ;
+            ;*/
+
+            root = FXMLLoader.load(getClass().getResource("/view/workingPage_" + userType + ".fxml"));
+            Stage stage = new Stage();
+            stage.setTitle("My New Stage Title");
+            stage.setScene(new Scene(root, 1000, 600));
+            stage.show();
 
 
         } catch (Exception e) {
