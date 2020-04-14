@@ -4,12 +4,18 @@ import util.accordion.SideBar;
 import util.accordion.SidebarSection;
 
 import javax.swing.*;
+import javax.swing.event.MouseInputAdapter;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.Utilities;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import static util.GCCDocParser.getDocumentation;
+import static util.GCCDocParser.getParameterDescription;
 
 public class SMARTGCC_LegacySwingVersion extends JDialog {
     private JPanel contentPane;
@@ -24,6 +30,11 @@ public class SMARTGCC_LegacySwingVersion extends JDialog {
     private JRadioButton noviceRadioButton;
     private JRadioButton typicalRadioButton;
     private JRadioButton expertRadioButton;
+    private JTextArea documentation;
+    private JLabel doc_title;
+    private JScrollPane scrollPane;
+    //private JPanel preview_description;
+    private JTextArea preview_desc;
     private final ArrayList<String> l = new ArrayList<>();
     private SidebarSection section_compiler;
     private SidebarSection section_linking;
@@ -36,7 +47,7 @@ public class SMARTGCC_LegacySwingVersion extends JDialog {
     public SMARTGCC_LegacySwingVersion() {
 
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        this.setPreferredSize(new Dimension((int) screenSize.getWidth() / 2, (int) (screenSize.getHeight() * 0.65)));
+        this.setPreferredSize(new Dimension((int) screenSize.getWidth() / 2, (int) (screenSize.getHeight() * 0.75)));
         setContentPane(contentPane);
         this.pack();
         setModal(true);
@@ -80,15 +91,45 @@ public class SMARTGCC_LegacySwingVersion extends JDialog {
             }
         });
 
-        noviceRadioButton.addActionListener(e -> {
-            setUserProfile(false, false);
-        });
-        typicalRadioButton.addActionListener(e -> {
-            setUserProfile(true, false);
-        });
-        expertRadioButton.addActionListener(e -> {
-            setUserProfile(true, true);
-        });
+        noviceRadioButton.addActionListener(e -> {setUserProfile(false, false);});
+        typicalRadioButton.addActionListener(e -> {setUserProfile(true, false);});
+        expertRadioButton.addActionListener(e -> {setUserProfile(true, true);});
+
+/*        gccPreviewTxt.addMouseListener(new MouseInputAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                super.mouseEntered(e);
+                getDescriptionFromMouse(e);
+            }
+
+            @Override
+            public void mouseMoved(MouseEvent e) {
+                super.mouseMoved(e);
+                getDescriptionFromMouse(e);
+            }
+        });*/
+    }
+
+    public void getDescriptionFromMouse(MouseEvent e) {
+        int position = gccPreviewTxt.viewToModel(e.getPoint());
+        int start = 0;
+        int end = 0;
+        String currentword = "";
+        try {
+            start = Utilities.getWordStart(gccPreviewTxt, position);
+            end = Utilities.getWordEnd(gccPreviewTxt, position);
+            currentword = gccPreviewTxt.getText(start, end - start);
+            gccPreviewTxt.select(start,end);
+        } catch (BadLocationException badLocationException) {
+            badLocationException.printStackTrace();
+        }
+        try {
+            String description = getParameterDescription(getDocumentation("linking", GCCDocParser.LOCAL), currentword);
+            preview_desc.setText(description);
+            //System.out.println(description);
+        } catch (IOException ioException) {
+            ioException.printStackTrace();
+        }
     }
 
     public void setUserProfile(boolean gen_opt, boolean dev) {
@@ -136,15 +177,17 @@ public class SMARTGCC_LegacySwingVersion extends JDialog {
         JPanel listPanel = new JPanel(new BorderLayout());
         SideBar sideBar = new SideBar(SideBar.SideBarMode.TOP_LEVEL, true, 300, true);
 
-        section_compiler = AccordionSection(sideBar, "COMPILER", SOEN6751_OptionsModel.compiler, iconCal24);
-        section_linking = AccordionSection(sideBar, "LINKING", SOEN6751_OptionsModel.linking, iconCal24);
-        section_execution = AccordionSection(sideBar, "EXECUTION", SOEN6751_OptionsModel.execute, iconCal24);
-        section_debug = AccordionSection(sideBar, "DEBUG", SOEN6751_OptionsModel.debugging, iconCal24);
+        SOEN6751_OptionsModel model = new SOEN6751_OptionsModel();
 
-        section_generation = AccordionSection(sideBar, "GENERATION", SOEN6751_OptionsModel.generation, iconCal24);
-        section_optimization = AccordionSection(sideBar, "OPTIMIZATION", SOEN6751_OptionsModel.optimization, iconCal24);
+        section_compiler = AccordionSection(sideBar, "COMPILER", model.compiler, iconCal24);
+        section_linking = AccordionSection(sideBar, "LINKING", model.linking, iconCal24);
+        section_execution = AccordionSection(sideBar, "EXECUTE", model.execute, iconCal24);
+        section_debug = AccordionSection(sideBar, "DEBUGGING", model.debugging, iconCal24);
 
-        section_developer = AccordionSection(sideBar, "DEVELOPER", SOEN6751_OptionsModel.developer, iconCal24);
+        section_generation = AccordionSection(sideBar, "GENERATION", model.generation, iconCal24);
+        section_optimization = AccordionSection(sideBar, "OPTIMIZATION", model.optimization, iconCal24);
+
+        section_developer = AccordionSection(sideBar, "DEVELOPER", model.developer, iconCal24);
 
         /*JTree tree = new JTree();
         SidebarSection ss2 = new SidebarSection(sideBar, "TREE", tree, iconCal24);
@@ -166,7 +209,7 @@ public class SMARTGCC_LegacySwingVersion extends JDialog {
 
         this.terminalpane2 = new JPanel(new BorderLayout());
         this.terminalpane2.add(SOEN6751_TerminalOutput.getTerminalContainer(), BorderLayout.CENTER);
-        System.out.println("Welcome to SMARTGCC (legacy version)\n");
+        System.out.println("Welcome to SMARTGCC (legacy version)\n\n");
 /*        try {
             SOEN6751_TerminalOutput.testSomeOutput();
         } catch (IOException | InterruptedException ex) {
@@ -192,6 +235,28 @@ public class SMARTGCC_LegacySwingVersion extends JDialog {
             optchip.setActionCommand(opt);
             optchip.setBorderPainted(true);
             optchip.setBorderPaintedFlat(true);
+            optchip.addMouseListener(new MouseListener() {
+                @Override public void mouseClicked(MouseEvent e) {}
+                @Override public void mousePressed(MouseEvent e) {}
+                @Override public void mouseReleased(MouseEvent e) {}
+
+                @Override
+                public void mouseEntered(MouseEvent e) {
+                    try {
+                        doc_title.setText("<html>Documentation for <font color=\"blue\">"+opt+"</font></html>");
+                        documentation.setText(getParameterDescription(getDocumentation(sectioname, GCCDocParser.LOCAL),opt));
+                    } catch (IOException ioException) {
+                        ioException.printStackTrace();
+                    }
+                    scrollPane.getViewport().setViewPosition( new Point(0, 0) );
+                }
+
+                @Override
+                public void mouseExited(MouseEvent e) {
+                    //doc_title.setText("Documentation");
+                    //documentation.setText("");
+                }
+            });
             optchip.addItemListener(e -> {
                 if (e.getStateChange() == ItemEvent.SELECTED) {
                     l.add(optchip.getActionCommand()/*.getText()*/);
@@ -202,6 +267,11 @@ public class SMARTGCC_LegacySwingVersion extends JDialog {
                 }
                 gccPreviewTxt.setText("gcc " + String.join(" ", l));
             });
+            /*try {
+                optchip.setToolTipText(GCCDocParser.getParameterDescription(getDocumentation("linking", GCCDocParser.LOCAL),opt));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }*/
             checkboxes.add(optchip);
         }
 
