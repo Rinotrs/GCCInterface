@@ -7,13 +7,11 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Button;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.layout.ColumnConstraints;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.RowConstraints;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.Text;
@@ -21,6 +19,7 @@ import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
 
 import javafx.scene.text.Font;
+import javafx.stage.StageStyle;
 import util.GCCDocParser;
 import util.SOEN6751_OptionsModel;
 
@@ -96,11 +95,12 @@ public class workingPage_1Controller implements Initializable {
         scrollPane.setFitToWidth(true);
 
         grid.getChildren().removeAll();
-        grid.setGridLinesVisible(true);
-        grid.getColumnConstraints().removeAll();
+        grid.setGridLinesVisible(false);
+
         grid.setAlignment(Pos.CENTER);
         grid.setHgap(10);
-        grid.setVgap(10);
+        grid.setVgap(20);
+        grid.setBackground(new Background(new BackgroundFill(Color.rgb(200,200,230),CornerRadii.EMPTY, Insets.EMPTY)));
         /*ColumnConstraints col1 = new ColumnConstraints();
         col1.setPercentWidth(33);
         ColumnConstraints col2 = new ColumnConstraints();
@@ -123,18 +123,26 @@ public class workingPage_1Controller implements Initializable {
     }
 
     public void clickCompilerOptions(ActionEvent actionEvent) {
+        grid.getChildren().clear();
         //3 buttons each row
         int columns = 3;
 
         int num_btn = SOEN6751_OptionsModel.compiler.length;
         int index = 0;
         int row = 0;
+        String [] options = SOEN6751_OptionsModel.compiler;
+
         while(index < num_btn) {
+            final String op = options[index];
+
             for (int i = 0; i < columns; i++) {
                 Button b = new Button(SOEN6751_OptionsModel.compiler[index]);
                 b.setAlignment(Pos.CENTER);
                 b.setMinWidth(224);
-                b.setAccessibleText(SOEN6751_OptionsModel.compiler[index]);
+                b.setMinHeight(40);
+                b.setAccessibleText(options[index]);
+                b.setTooltip(new Tooltip(GCCDocParser.getParameterDescription(SOEN6751_OptionsModel.compiler_documentation,op)));
+
                 grid.add(b, i, row);
             }
             index++;
@@ -144,6 +152,8 @@ public class workingPage_1Controller implements Initializable {
     }
 
     public void clickDebuggingOptions(ActionEvent actionEvent) {
+        grid.getChildren().clear();
+
     }
 
     public void clickLinkingOptions(ActionEvent actionEvent) {
