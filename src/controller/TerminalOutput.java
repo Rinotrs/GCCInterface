@@ -10,6 +10,7 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
 import util.SOEN6751_GccProcLib;
+import util.SOEN6751_TerminalOutput;
 
 import java.io.IOException;
 import java.io.PrintStream;
@@ -37,19 +38,9 @@ public class TerminalOutput implements Initializable {
         outputArea.setBackground(new Background(new BackgroundFill(Color.BLACK,CornerRadii.EMPTY, Insets.EMPTY)));
         outputArea.setStyle("-fx-text-fill:green;-fx-font-size:16px;");
         outputArea.setPrefSize(Double.MAX_VALUE,Double.MAX_VALUE);
-        try {
-            getOutput();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+
+        TerminalOutputStream.setTerminalTo(outputArea);
     }
 
-    private void getOutput() throws IOException, InterruptedException {
-        System.setOut(new PrintStream(String.valueOf(outputArea)));
-        SOEN6751_GccProcLib.run(TerminalOutput.currentCommand);
 
-
-    }
 }

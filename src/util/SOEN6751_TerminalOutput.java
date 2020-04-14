@@ -1,5 +1,7 @@
 package util;
 
+import javafx.scene.control.TextArea;
+
 import java.awt.*;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -14,10 +16,12 @@ import javax.swing.SwingUtilities;
 public class SOEN6751_TerminalOutput extends OutputStream {
     private final JTextArea destination;
 
+
     public SOEN6751_TerminalOutput(JTextArea destination) {
         if (destination == null) throw new IllegalArgumentException("Destination is null");
         this.destination = destination;
     }
+
 
     @Override
     public void write(byte[] buffer, int offset, int length) throws IOException {
