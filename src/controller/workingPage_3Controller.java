@@ -35,6 +35,14 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 
+/**
+ *
+ * This is the controller for expert working page
+ *
+ * @author Runsen Tian
+ * @version v1.0.0
+ */
+
 public class workingPage_3Controller implements Initializable{
 
     @FXML
@@ -79,6 +87,12 @@ public class workingPage_3Controller implements Initializable{
     ObservableList UsedList = FXCollections.observableArrayList();
     List<Button> allButton = new ArrayList<Button>();
 
+
+    /**
+     *<p>
+     * This method initialize the page.
+     *</p>
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         loadData();
@@ -112,6 +126,12 @@ public class workingPage_3Controller implements Initializable{
         textArea.setText(currText);
     }
 
+
+    /**
+     *<p>
+     * This method loads the options will be choice.
+     *</p>
+     */
     private void loadData() {
         /*unUsedList.addAll("Code Generation", "Developer Options", "Code Optimization");
         series.getItems().addAll(unUsedList)*/;
@@ -121,6 +141,13 @@ public class workingPage_3Controller implements Initializable{
 
     }
 
+
+    /**
+     *<p>
+     * This method implements choosing Compiler Options.
+     *</p>
+     * @param actionEvent ActionEvent
+     */
     public void clickCompilerOptions(ActionEvent actionEvent) {
         grid.getChildren().clear();
         //3 buttons each row
@@ -160,7 +187,12 @@ public class workingPage_3Controller implements Initializable{
 
     }
 
-
+    /**
+     *<p>
+     * This method implements choosing Debugging Options.
+     *</p>
+     * @param actionEvent ActionEvent
+     */
 
     public void clickDebuggingOptions(ActionEvent actionEvent) {
         grid.getChildren().clear();
@@ -198,6 +230,13 @@ public class workingPage_3Controller implements Initializable{
         }
     }
 
+
+    /**
+     *<p>
+     * This method implements choosing Linking Options.
+     *</p>
+     * @param actionEvent ActionEvent
+     */
     public void clickLinkingOptions(ActionEvent actionEvent) {
         grid.getChildren().clear();
         //3 buttons each row
@@ -234,6 +273,13 @@ public class workingPage_3Controller implements Initializable{
         }
     }
 
+
+    /**
+     *<p>
+     * This method implements choosing Execute Options.
+     *</p>
+     * @param actionEvent ActionEvent
+     */
     public void clickExecuteOptions(ActionEvent actionEvent) {
         grid.getChildren().clear();
         //3 buttons each row
@@ -268,6 +314,14 @@ public class workingPage_3Controller implements Initializable{
             if(index%3==0)row++;
         }
     }
+
+
+    /**
+     *<p>
+     * This method implements choosing Code Generation.
+     *</p>
+     * @param actionEvent ActionEvent
+     */
 
     public void clickCodeGeneration(ActionEvent actionEvent) {
         grid.getChildren().clear();
@@ -304,6 +358,13 @@ public class workingPage_3Controller implements Initializable{
         }
     }
 
+    /**
+     *<p>
+     * This method implements choosing Developer Options.
+     *</p>
+     * @param actionEvent ActionEvent
+     */
+
     public void clickDeveloperOptions(ActionEvent actionEvent) {
         grid.getChildren().clear();
         //3 buttons each row
@@ -339,6 +400,13 @@ public class workingPage_3Controller implements Initializable{
             if(index%3==0)row++;
         }
     }
+
+    /**
+     *<p>
+     * This method implements choosing Code Optimization.
+     *</p>
+     * @param actionEvent ActionEvent
+     */
 
     public void clickCodeOptimization(ActionEvent actionEvent) {
         grid.getChildren().clear();
@@ -397,6 +465,14 @@ public class workingPage_3Controller implements Initializable{
         executed=false;
     }
 
+    /**
+     *<p>
+     * This method to remove parentheses.
+     *</p>
+     * @param comm String
+     * @return
+     */
+
     public String removeParentheses(String comm){
         int index =0;
         while(index<comm.length()&& comm.charAt(index)!='('){
@@ -405,6 +481,13 @@ public class workingPage_3Controller implements Initializable{
         return comm.substring(0,index);
     }
 
+    /**
+     *<p>
+     * This method for output terminal.
+     *</p>
+     * @param event ActionEvent
+     * @throws IOException Input out exception
+     */
     @FXML
     void runClick(ActionEvent event) throws IOException {
         TerminalOutput.setCurrentCommand(currText);
