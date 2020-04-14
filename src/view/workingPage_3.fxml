@@ -61,10 +61,10 @@
                         <Button fx:id="compilerOptions" layoutY="160.0" mnemonicParsing="false" onAction="#clickCompilerOptions" text="Compiler Options" textFill="white" visible="true" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" />
                         <Button fx:id="debuggingOptions" layoutY="200.0" mnemonicParsing="false" onAction="#clickDebuggingOptions" text="Debugging Options" textFill="white" visible="true" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" />
                         <Button fx:id="linkingOptions" layoutY="240.0" mnemonicParsing="false" onAction="#clickLinkingOptions" text="Linking Options" textFill="white" visible="true" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" />
-                        <Button fx:id="executeOptions" layoutY="280.0" mnemonicParsing="false" onAction="#clickExecuteOptions" text=" Execute Options" textFill="white" visible="true" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" />
-                        <Button fx:id="codeGeneration" layoutY="320.0" mnemonicParsing="false" onAction="#clickCodeGeneration" text=" Code Generation" textFill="white" visible="true" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" />
+                        <Button fx:id="executeOptions" layoutY="280.0" mnemonicParsing="false" onAction="#clickExecuteOptions" text="Execute Options" textFill="white" visible="true" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" />
+                        <Button fx:id="codeGeneration" layoutY="320.0" mnemonicParsing="false" onAction="#clickCodeGeneration" text="Code Generation" textFill="white" visible="true" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" />
                         <Button fx:id="codeOptimization" layoutY="360.0" mnemonicParsing="false" onAction="#clickDeveloperOptions" text="Code Optimization" textFill="white" visible="true" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" />
-                        <Button fx:id="developerOptions" layoutY="400.0" mnemonicParsing="false" onAction="#clickCodeOptimization" text=" Developer Options" textFill="white" visible="true" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" />
+                        <Button fx:id="developerOptions" layoutY="400.0" mnemonicParsing="false" onAction="#clickCodeOptimization" text="Developer Options" textFill="white" visible="true" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" />
                  <!-- <Button fx:id="closeButton" layoutX="188.0" layoutY="2.0" mnemonicParsing="false" onMouseClicked="#CloseWindow" text="X" />-->
 
 
