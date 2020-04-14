@@ -101,7 +101,7 @@ public class workingPage_1Controller implements Initializable {
         text1.setFill(Color.RED);
         text1.setFont(Font.font("Helvetica",FontPosture.ITALIC,40));
         textField.getChildren().add(text1);
-        processBuilder.command("")
+        processBuilder.command("");
 
 
         textField.setVisible(true);
