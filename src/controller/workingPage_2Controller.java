@@ -94,18 +94,22 @@ public class workingPage_2Controller implements Initializable {
         loadData();
         series.getSelectionModel().selectedIndexProperty().addListener((observableValue, number, t1) -> {
 //                unUsedList.get(t1)
-            for (String s : unUsedList) {
-                if (unUsedList.get(t1.intValue()).equals(s)) {
-                    for (Button button : allButton) {
-                        if (button.getId().equals(s)) {
-                            button.setVisible(true);
-                            unUsedList.remove(s);
-                            series.getItems().clear();
-                            series.getItems().addAll(unUsedList);
-                            break;
-                        }
-                    }
-                }
+//            for (String s : unUsedList) {
+//                if (unUsedList.get(t1.intValue()).equals(s)) {
+//                    for (Button button : allButton) {
+//                        if (button.getId().equals(s)) {
+//                            button.setVisible(true);
+//                            unUsedList.remove(s);
+//                            series.getItems().clear();
+//                            series.getItems().addAll(unUsedList);
+//                            break;
+//                        }
+//                    }
+//                }
+//            }
+            if (t1.intValue()==0){
+                developerOptions.setVisible(true);
+                series.getItems().clear();
             }
         });
 
@@ -137,10 +141,8 @@ public class workingPage_2Controller implements Initializable {
      *</p>
      */
     private void loadData() {
-        unUsedList.addAll("Code Optimization");
+        unUsedList.addAll("Developer Options");
         series.getItems().addAll(unUsedList);
-        allButton.add(codeGeneration);
-        allButton.add(developerOptions);
         allButton.add(codeOptimization);
     }
 
