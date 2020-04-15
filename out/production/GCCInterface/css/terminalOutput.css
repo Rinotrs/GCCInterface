@@ -1,7 +1,7 @@
-.text-area{
-    text-area-background: white;
+.button {
+    -fx-background-color: white;
 }
 
-.text-area .content{
-    -fx-background-color: text-area-background;
+.button:hover {
+    -fx-background-color: #20B2AA;
 }

@@ -5,9 +5,8 @@
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-
-<AnchorPane fx:id="backgroundPane" prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/terminalOutput.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TerminalOutput">
+<AnchorPane fx:id="backgroundPane" prefHeight="400.0" prefWidth="600.0"  style="-fx-background-color: #79CDCD" stylesheets="@../css/terminalOutput.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TerminalOutput">
    <children>
-      <TextArea fx:id="outputArea" layoutX="17.0" layoutY="18.0" prefHeight="357.0" prefWidth="565.0" style="-fx-background-color: #79CDCD"/>
+      <TextArea fx:id="outputArea" layoutX="47.0" layoutY="50.0" prefHeight="300.0" prefWidth="500.0" />
    </children>
 </AnchorPane>

@@ -497,7 +497,7 @@ public class workingPage_2Controller implements Initializable {
         Parent root = FXMLLoader.load(getClass().getResource("/view/terminalOutput.fxml"));
         Stage stage = new Stage();
         stage.setTitle("Output Terminal");
-        stage.setScene(new Scene(root, 1000, 600));
+        stage.setScene(new Scene(root, 600, 400));
         stage.show();
 
         currText = "gcc";

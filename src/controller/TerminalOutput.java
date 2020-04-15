@@ -50,7 +50,7 @@ public class TerminalOutput implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        backgroundPane.styleProperty().set("-fx-background-color: black;");
+        backgroundPane.styleProperty().set("-fx-background-color: white;");
         outputArea.setStyle("-fx-text-fill:green;-fx-font-size:16px;");
         outputArea.setMinSize(300,300);
 
